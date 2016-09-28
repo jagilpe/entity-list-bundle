@@ -1,0 +1,7 @@
+services:
+    # Twig Extension
+    m7_components.twig_extension:
+        class: Module7\ComponentsBundle\Twig\Module7ComponentsExtension
+        public: false
+        tags:
+            - { name: twig.extension }
