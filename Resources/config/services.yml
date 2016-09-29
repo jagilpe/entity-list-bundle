@@ -1,7 +1,12 @@
 services:
+    m7_components.list_factory:
+        class: Module7\ComponentsBundle\EntityList\EntityListFactory
+        
     # Twig Extension
     m7_components.twig_extension:
         class: Module7\ComponentsBundle\Twig\Module7ComponentsExtension
+        arguments:
+            - "@twig"
         public: false
         tags:
             - { name: twig.extension }

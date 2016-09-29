@@ -1,0 +1,29 @@
+<?php
+
+namespace Module7\ComponentsBundle\EntityList\Column;
+
+use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
+
+/**
+ * Defines an interface to work with the column of an entity list
+ *
+ * @author Javier Gil Pereda <javier.gil@module-7.com>
+ */
+interface ColumnInterface
+{
+    /**
+     * Checks if the entity class is compatible with this column definition
+     *
+     * @param unknown $entityClass
+     *
+     * @return boolean
+     */
+    public function isCompatibleWithEntity($entityClass);
+
+    /**
+     * Returns the Header for this column
+     *
+     * @return \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface
+     */
+    public function getHeader();
+}
