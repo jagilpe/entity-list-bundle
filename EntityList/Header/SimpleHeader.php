@@ -3,6 +3,7 @@
 namespace Module7\ComponentsBundle\EntityList\Header;
 
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
+use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -25,7 +26,7 @@ class SimpleHeader implements HeaderInterface
      */
     protected $columns;
 
-    public function __construct($entityClass, ArrayCollection $columns)
+    public function __construct($entityClass, array $columns = array())
     {
         $this->entityClass = $entityClass;
         $this->columns = $columns;
@@ -46,7 +47,9 @@ class SimpleHeader implements HeaderInterface
      */
     public function getChildren()
     {
-        $children = array();
+        $children = array_map(function(ColumnInterface $column) {
+            return $column->getHeader();
+        }, $this->columns);
 
         return $children;
     }

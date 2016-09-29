@@ -3,6 +3,7 @@
 namespace Module7\ComponentsBundle\EntityList\Column;
 
 use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
+use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
 
 /**
  * Defines an interface to work with the column of an entity list
@@ -26,4 +27,13 @@ interface ColumnInterface
      * @return \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface
      */
     public function getHeader();
+
+    /**
+     * Returns the cell that corresponds to a determined entity
+     *
+     * @param mixed $entity
+     *
+     * @return CellInterface
+     */
+    public function getCellContent($entity);
 }

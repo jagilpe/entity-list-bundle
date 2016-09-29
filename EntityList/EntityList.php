@@ -8,6 +8,7 @@ use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use Module7\ComponentsBundle\EntityList\Header\SimpleHeader;
+use Module7\ComponentsBundle\EntityList\Row\SimpleRow;
 
 /**
  *
@@ -24,13 +25,13 @@ class EntityList implements RenderableInterface
     protected $entityClass;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var array
      */
-    protected $columns;
+    protected $columns = array();
 
     protected $elements;
 
-    public function __construct($entityClass, array $entities, $options = array())
+    public function __construct($entityClass, array $elements, $options = array())
     {
         if (!class_exists($entityClass)) {
             throw new EntityListException("Class $entityClass does not exists.");
@@ -38,7 +39,6 @@ class EntityList implements RenderableInterface
 
         $this->entityClass = $entityClass;
         $this->options = $options;
-        $this->columns = new ArrayCollection();
     }
 
     /**
@@ -50,11 +50,11 @@ class EntityList implements RenderableInterface
     public function addColumn(ColumnInterface $column)
     {
         // First we have to check if the column is compatible with the entity class
-        if (!$column->isCompatibleWithClass($this->entityClass)) {
+        if (!$column->isCompatibleWithEntity($this->entityClass)) {
             throw new EntityListException('Column definition not compatible with entity class '.$this->entityClass);
         }
 
-        $this->columns->add($column);
+        $this->columns[] = $column;
     }
 
     /**
@@ -74,6 +74,11 @@ class EntityList implements RenderableInterface
     {
         $children = array();
         $children[] = new SimpleHeader($this->entityClass, $this->columns);
+
+        // Add the rows
+        foreach ($this->elements as $entity) {
+            $children[] = new SimpleRow($entity, $this->columns);
+        }
 
         return $children;
     }

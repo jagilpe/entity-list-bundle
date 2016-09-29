@@ -33,4 +33,13 @@ trait RenderableBaseTrait
     {
         return $this->options;
     }
+
+    /**
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getChildren()
+     */
+    public function getChildren()
+    {
+        return array();
+    }
 }
