@@ -30,6 +30,8 @@ abstract class AbstractListType implements ListTypeInterface
             'attrs' => array(),
             'label' => null,
             'translation_domain' => 'messages',
+            'block_name' => null,
+            'entity_class' => null,
         ));
     }
 
