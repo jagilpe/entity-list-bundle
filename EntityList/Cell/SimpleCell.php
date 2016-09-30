@@ -41,4 +41,32 @@ class SimpleCell implements CellInterface
     {
         return $this->value;
     }
+
+    /**
+     * Returns the name of the field
+     *
+     * @return NULL|string
+     */
+    public function getFieldName()
+    {
+        return isset($this->options['fieldName']) ? $this->options['fieldName'] : null;
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
+     */
+    public function getAttributes()
+    {
+        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
+
+        if (!isset($attributes['class'])) {
+            $attributes['class'] = array();
+        }
+        $classes = array($this->getFieldName(), 'pc-condensed');
+        $attributes['class'] = array_merge($attributes['class'], $classes);
+
+        return $attributes;
+    }
 }

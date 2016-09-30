@@ -22,6 +22,13 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('module7_components');
 
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('lists_theme')->defaultValue('Module7ComponentsBundle::entity_list_elements.html.twig')->end()
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }

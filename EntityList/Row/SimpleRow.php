@@ -3,6 +3,7 @@
 namespace Module7\ComponentsBundle\EntityList\Row;
 
 use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
+use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 
 /**
  *
@@ -11,6 +12,8 @@ use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
  */
 class SimpleRow implements RowInterface
 {
+    use RenderableBaseTrait;
+
     /**
      * @var mixed
      */
@@ -34,7 +37,7 @@ class SimpleRow implements RowInterface
      */
     public function getChildren()
     {
-        return array();
+        $entity = $this->entity;
         $children = array_map(function(ColumnInterface $column) use ($entity) {
             return $column->getCellContent($entity);
         }, $this->columns);

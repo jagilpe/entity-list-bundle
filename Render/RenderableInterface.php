@@ -36,4 +36,11 @@ interface RenderableInterface
      * @return array
      */
     public function getOptions();
+
+    /**
+     * Returns the attribute for the main container element
+     *
+     * @return array
+     */
+    public function getAttributes();
 }

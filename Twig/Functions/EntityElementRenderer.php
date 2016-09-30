@@ -40,7 +40,7 @@ class EntityElementRenderer extends \Twig_SimpleFunction implements RendererInte
             'translation_domain' => isset($options['translation_domain']) ? $options['translation_domain'] : 'messages',
         );
 
-        $template = $this->twig->loadTemplate('Module7ComponentsBundle::entity_list_widgets.html.twig');
+        $template = $this->twig->loadTemplate($this->options['lists_theme']);
         $blockName = $renderableElement->getBlockName();
 
         return $template->renderBlock($blockName, array('element' => $renderableElement));

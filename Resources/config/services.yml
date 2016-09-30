@@ -7,6 +7,7 @@ services:
         class: Module7\ComponentsBundle\Twig\Module7ComponentsExtension
         arguments:
             - "@twig"
+            - "%module7_components.lists_theme%"
         public: false
         tags:
             - { name: twig.extension }

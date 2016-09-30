@@ -42,4 +42,13 @@ trait RenderableBaseTrait
     {
         return array();
     }
+
+    /**
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
+     */
+    public function getAttributes()
+    {
+        return array();
+    }
 }

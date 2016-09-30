@@ -26,5 +26,7 @@ class Module7ComponentsExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('module7_components.lists_theme', $config['lists_theme']);
     }
 }

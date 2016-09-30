@@ -55,7 +55,10 @@ class SimpleColumn implements ColumnInterface
      */
     public function getCellContent($entity)
     {
-        return new SimpleCell($this->getFieldValue($entity));
+        $options = array(
+            'fieldName' => $this->fieldName,
+        );
+        return new SimpleCell($this->getFieldValue($entity), $options);
     }
 
     /**

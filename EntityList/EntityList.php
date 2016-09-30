@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use Module7\ComponentsBundle\EntityList\Header\SimpleHeader;
 use Module7\ComponentsBundle\EntityList\Row\SimpleRow;
+use Module7\ComponentsBundle\EntityList\Body\SimpleBody;
+use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
+use Module7\ComponentsBundle\EntityList\Body\BodyInterface;
 
 /**
  *
@@ -29,9 +32,9 @@ class EntityList implements RenderableInterface
      */
     protected $columns = array();
 
-    protected $elements;
+    protected $entities;
 
-    public function __construct($entityClass, array $elements, $options = array())
+    public function __construct($entityClass, array $entities, $options = array())
     {
         if (!class_exists($entityClass)) {
             throw new EntityListException("Class $entityClass does not exists.");
@@ -39,6 +42,7 @@ class EntityList implements RenderableInterface
 
         $this->entityClass = $entityClass;
         $this->options = $options;
+        $this->entities = $entities;
     }
 
     /**
@@ -73,22 +77,30 @@ class EntityList implements RenderableInterface
     public function getChildren()
     {
         $children = array();
-        $children[] = new SimpleHeader($this->entityClass, $this->columns);
-
-        // Add the rows
-        foreach ($this->elements as $entity) {
-            $children[] = new SimpleRow($entity, $this->columns);
-        }
+        $children[] = $this->getHeader();
+        $children[] = $this->getBody();
 
         return $children;
     }
 
     /**
      * Returns the header
+     *
+     * @return HeaderInterface
      */
     public function getHeader()
     {
+        return new SimpleHeader($this->entityClass, $this->columns);
+    }
 
+    /**
+     * Returns the body
+     *
+     * @return BodyInterface
+     */
+    public function getBody()
+    {
+        return new SimpleBody($this->entities, $this->columns);
     }
 
     /**
@@ -98,6 +110,30 @@ class EntityList implements RenderableInterface
      */
     public function getFields()
     {
-        return array('name', 'address');
+//         $fields = array();
+//         foreach ($this->columns as $column) {
+
+//         }
+        return array('name');
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
+     */
+    public function getAttributes()
+    {
+        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
+
+        if (!isset($attributes['class'])) {
+            $attributes['class'] = array();
+        }
+        $classes = array('table-responsive', 'm7-searchable-table');
+        $attributes['class'] = array_merge($attributes['class'], $classes);
+
+        $attributes['data-terms'] = implode(',', $this->getFields());
+
+        return $attributes;
     }
 }
