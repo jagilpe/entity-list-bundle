@@ -27,4 +27,11 @@ interface ColumnInterface
      * @return CellInterface
      */
     public function getCellContent($entity);
+
+    /**
+     * Returns the fields included in this column
+     *
+     * @return array
+     */
+    public function getFields();
 }

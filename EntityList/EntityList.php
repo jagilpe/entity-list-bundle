@@ -95,11 +95,12 @@ class EntityList implements RenderableInterface
      */
     public function getFields()
     {
-//         $fields = array();
-//         foreach ($this->columns as $column) {
+        $fields = array();
+        foreach ($this->columns as $column) {
+            $fields = array_merge($fields, $column->getFields());
+        }
 
-//         }
-        return array('name');
+        return $fields;
     }
 
     /**

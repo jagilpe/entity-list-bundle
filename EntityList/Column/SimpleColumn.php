@@ -53,6 +53,16 @@ class SimpleColumn implements ColumnInterface
 
     /**
      *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getFields()
+     */
+    public function getFields()
+    {
+        return array($this->fieldName);
+    }
+
+    /**
+     *
      * @param unknown $entity
      */
     protected function getFieldValue($entity)
