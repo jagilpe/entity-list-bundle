@@ -16,19 +16,13 @@ class SimpleHeader implements HeaderInterface
     use RenderableBaseTrait;
 
     /**
-     * @var string
-     */
-    protected $entityClass;
-
-    /**
      *
      * @var ArrayCollection
      */
     protected $columns;
 
-    public function __construct($entityClass, array $columns = array())
+    public function __construct(array $columns = array())
     {
-        $this->entityClass = $entityClass;
         $this->columns = $columns;
     }
 

@@ -5,13 +5,14 @@ namespace Module7\ComponentsBundle\EntityList;
 use Module7\ComponentsBundle\Module7ComponentsBundle;
 use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
 use Module7\ComponentsBundle\Exception\EntityListException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Builder class to generate different Entity Lists
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  */
-class EntityListBuilder
+class EntityListBuilder implements EntityListBuilderInterface
 {
     /**
      *
@@ -24,15 +25,26 @@ class EntityListBuilder
      */
     private $entityList;
 
-    public function __construct($entityClass, array $entities, array $options = array())
+    public function __construct(array $entities, $listTypeClass = ListType::class, EntityListFactoryInterface $factory, array $options = array())
     {
-        $this->entityList = new EntityList($entityClass, $entities, $options);
+        $entityType = $factory->getEntityListType($listTypeClass);
+
+        // Get the options
+        $optionsResolver = new OptionsResolver();
+        $entityType->configureOptions($optionsResolver);
+        $options = $optionsResolver->resolve($options);
+
+        // Create the base entity list
+        $this->entityList = new EntityList($entities, $options);
+
+        // Build the list
+        $entityType->buildList($this, $options);
     }
 
     /**
-     * Adds a column interface definition to the List
      *
-     * @param \Module7\ComponentsBundle\EntityList\Column\ColumnInterface $column
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\EntityListBuilderInterface::add()
      */
     public function add($column, $columnClass = null, $options = array())
     {
@@ -46,9 +58,9 @@ class EntityListBuilder
     }
 
     /**
-     * Returns the built entity list
      *
-     * @return \Module7\ComponentsBundle\EntityList\EntityList
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\EntityListBuilderInterface::getEntityList()
      */
     public function getEntityList()
     {

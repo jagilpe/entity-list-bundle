@@ -2,27 +2,55 @@
 
 namespace Module7\ComponentsBundle\EntityList;
 
-use Namespaced\WithComments;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
-class EntityListFactory
+class EntityListFactory implements EntityListFactoryInterface
 {
     /**
-     * Factory method to create a list builder
+     * The Entity List Types registered as service
      *
-     * @param string $entityClass
-     *   The class of the entities
-     * @param array $entities
-     *   The entities to build the list WithComments
-     * @param array $options
-     *   The options for the entity list
-     *
-     * @return Module7\ComponentsBundle\EntityList\EntityListBuilder
+     * @var array
      */
-    public function createListBuilder($entityClass, array $entities, array $options = array())
+    private $listTypes;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createListBuilder(array $entities, $listTypeClass = null, array $options = array())
     {
-        $listBuilder = new EntityListBuilder($entityClass, $entities, $options);
+        $listTypeClass = $listTypeClass !== null ? $listTypeClass : ListType::class;
+        $listBuilder = new EntityListBuilder($entities, $listTypeClass, $this, $options);
 
         return $listBuilder;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createList(array $entities, $listTypeClass = ListType::class, array $options = array())
+    {
+        $listTypeClass = $listTypeClass !== null ? $listTypeClass : ListType::class;
+        return $this->createListBuilder($entities, $listTypeClass, $options)->getEntityList();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEntityListType($typeClass)
+    {
+        if (isset($this->listTypes[$typeClass])) {
+            return $this->listTypes[$typeClass];
+        }
+        elseif (class_exists($typeClass)) {
+            return new $typeClass();
+        }
+    }
+
+    /**
+     * Adds a Entity List Type to the list of available types registered as service
+     *
+     * @param ListTypeInterface $entityListType
+     */
+    public function addEntityListType(ListTypeInterface $entityListType)
+    {
+        $this->listTypes[get_class($entityListType)] = $entityListType;
     }
 }

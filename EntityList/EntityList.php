@@ -23,24 +23,14 @@ class EntityList implements RenderableInterface
     use RenderableBaseTrait;
 
     /**
-     * @var string
-     */
-    protected $entityClass;
-
-    /**
      * @var array
      */
     protected $columns = array();
 
     protected $entities;
 
-    public function __construct($entityClass, array $entities, $options = array())
+    public function __construct(array $entities, $options = array())
     {
-        if (!class_exists($entityClass)) {
-            throw new EntityListException("Class $entityClass does not exists.");
-        }
-
-        $this->entityClass = $entityClass;
         $this->options = $options;
         $this->entities = $entities;
     }
@@ -53,11 +43,6 @@ class EntityList implements RenderableInterface
      */
     public function addColumn(ColumnInterface $column)
     {
-        // First we have to check if the column is compatible with the entity class
-        if (!$column->isCompatibleWithEntity($this->entityClass)) {
-            throw new EntityListException('Column definition not compatible with entity class '.$this->entityClass);
-        }
-
         $this->columns[] = $column;
     }
 
@@ -90,7 +75,7 @@ class EntityList implements RenderableInterface
      */
     public function getHeader()
     {
-        return new SimpleHeader($this->entityClass, $this->columns);
+        return new SimpleHeader($this->columns);
     }
 
     /**

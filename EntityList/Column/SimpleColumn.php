@@ -31,16 +31,6 @@ class SimpleColumn implements ColumnInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::isCompatibleWithEntity()
-     */
-    public function isCompatibleWithEntity($entityClass)
-    {
-        //@TODO Implement
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getHeader()
      */
     public function getHeader()

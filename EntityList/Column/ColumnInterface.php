@@ -13,15 +13,6 @@ use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
 interface ColumnInterface
 {
     /**
-     * Checks if the entity class is compatible with this column definition
-     *
-     * @param unknown $entityClass
-     *
-     * @return boolean
-     */
-    public function isCompatibleWithEntity($entityClass);
-
-    /**
      * Returns the Header for this column
      *
      * @return \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface
