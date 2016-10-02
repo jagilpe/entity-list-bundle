@@ -74,7 +74,4 @@
 		}
     };
     
-    $(document).ready(function() {
-    	$('.m7-searchable-table').m7SearchableTable();
-    });
 })(jQuery, window, document);
