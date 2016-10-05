@@ -13,6 +13,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractColumnType implements ColumnTypeInterface
 {
+    private $inheritableOptions = array(
+        'translation_domain',
+        'label',
+    );
+
     /**
      *
      * @param EntityListBuilderInterface $builder
@@ -62,10 +67,14 @@ abstract class AbstractColumnType implements ColumnTypeInterface
     {
         $cellOptions = $options['cell_options'];
 
-        $cellOptions['translation_domain'] =
-            isset($cellOptions['translation_domain'])
-            ? $cellOptions['translation_domain']
-            : $options['translation_domain'];
+        $inheritableOptions = $this->getInheritableOptions();
+
+        foreach ($inheritableOptions as $inheritableOption) {
+            $cellOptions[$inheritableOption] =
+                isset($cellOptions[$inheritableOption])
+                ? $cellOptions[$inheritableOption]
+                : $options[$inheritableOption];
+        }
 
         return $cellOptions;
     }
@@ -81,11 +90,20 @@ abstract class AbstractColumnType implements ColumnTypeInterface
     {
         $headerOptions = $options['header_options'];
 
-        $headerOptions['translation_domain'] =
-            isset($headerOptions['translation_domain'])
-            ? $headerOptions['translation_domain']
-            : $options['translation_domain'];
+        $inheritableOptions = $this->getInheritableOptions();
+
+        foreach ($inheritableOptions as $inheritableOption) {
+            $headerOptions[$inheritableOption] =
+                isset($headerOptions[$inheritableOption])
+                ? $headerOptions[$inheritableOption]
+                : $options[$inheritableOption];
+        }
 
         return $headerOptions;
+    }
+
+    protected function getInheritableOptions()
+    {
+        return $this->inheritableOptions;
     }
 }
