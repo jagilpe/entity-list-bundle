@@ -32,6 +32,7 @@ abstract class AbstractListType implements ListTypeInterface
             'translation_domain' => 'messages',
             'block_name' => null,
             'entity_class' => null,
+            'column_type_options' => null,
         ));
     }
 

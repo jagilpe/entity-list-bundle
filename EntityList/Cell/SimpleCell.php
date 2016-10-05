@@ -3,6 +3,7 @@
 namespace Module7\ComponentsBundle\EntityList\Cell;
 
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
+use AppBundle\Service\SettingsService;
 
 /**
  * Simple implementation of the CellInterface that simply returns the content of the field
@@ -16,10 +17,22 @@ class SimpleCell implements CellInterface
 
     protected $value;
 
+    /**
+     *
+     * @var CellFormatterInterface
+     */
+    protected $formatter;
+
     public function __construct($value, array $options = array())
     {
         $this->value = $value;
         $this->options = $options;
+
+        if (isset($options['formatter'])) {
+            if ($options['formatter'] instanceof CellFormatterInterface) {
+                $this->formatter = $options['formatter'];
+            }
+        }
     }
 
     /**
@@ -39,7 +52,18 @@ class SimpleCell implements CellInterface
      */
     public function getValue()
     {
-        return $this->value;
+        if ($this->formatter) {
+            return $this->formatter->formatValue($this->value);
+        }
+        else {
+            if ($this->value instanceof \DateTime) {
+                $formatter = new DateTimeCellFormatter($this->getDateTimeFormat());
+                return $formatter->formatValue($this->value);
+            }
+            else {
+                return $this->value;
+            }
+        }
     }
 
     /**
@@ -68,5 +92,12 @@ class SimpleCell implements CellInterface
         $attributes['class'] = array_merge($attributes['class'], $classes);
 
         return $attributes;
+    }
+
+    private function getDateTimeFormat()
+    {
+        return isset($this->options['datetime_format'])
+            ? $this->options['datetime_format']
+            : SettingsService::DEFAULT_DATE_FORMAT;
     }
 }

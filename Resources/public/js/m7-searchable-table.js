@@ -24,12 +24,24 @@
     	    	page: this.options.itemsPerPage
     	    };
     	    
-    	    if (this.options.pagination) {
+    	    if (this._loadPagination()) {
     	    	listOptions.plugins = [ ListPagination({
     	    		outerWindow : 1
     	    	}) ];
     	    }
     	    this.list = new List(this.element, listOptions);
+    	},
+    	
+    	_loadPagination : function() {
+    		if (this.options.pagination) {
+    			var list = $(this.element).find('.list').first();
+    			var items = list.children();
+    			
+    			return items.length > this.options.itemsPerPage;
+    		}
+    		else {
+    			return false;
+    		}
     	}
     };
     

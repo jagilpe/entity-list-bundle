@@ -5,6 +5,7 @@ namespace Module7\ComponentsBundle\EntityList\Column;
 use Module7\ComponentsBundle\EntityList\Header\SimpleHeaderElement;
 use Module7\ComponentsBundle\EntityList\Cell\SimpleCell;
 use Module7\ComponentsBundle\Exception\EntityListException;
+use Module7\ComponentsBundle\EntityList\Cell\CellFormatterInterface;
 
 /**
  * Defines a simple column definition that simply references a field in the Entity
@@ -23,10 +24,21 @@ class SimpleColumn implements ColumnInterface
      */
     protected $options;
 
+    /**
+     * @var unknown
+     */
+    protected $formatter;
+
     public function __construct($fieldName, array $options = array())
     {
         $this->fieldName = $fieldName;
         $this->options = $options;
+
+        if (isset($options['formatter'])) {
+            if ($options['formatter'] instanceof CellFormatterInterface) {
+                $this->formatter = $options['formatter'];
+            }
+        }
     }
 
     /**
@@ -48,6 +60,15 @@ class SimpleColumn implements ColumnInterface
         $options = array(
             'fieldName' => $this->fieldName,
         );
+
+        if ($this->formatter) {
+            $options['formatter'] = $this->formatter;
+        }
+
+        if (isset($this->options['datetime_format'])) {
+            $options['datetime_format'] = $this->options['datetime_format'];
+        }
+
         return new SimpleCell($this->getFieldValue($entity), $options);
     }
 
