@@ -92,12 +92,35 @@ class SimpleColumn implements ColumnInterface
 
         $fieldName = $this->fieldName;
 
-        $reflectionProperty = $reflectionClass->hasProperty($fieldName)
-        ? $reflectionClass->getProperty($fieldName) : false;
-        if ($reflectionProperty && $reflectionProperty->isPublic()) {
-            return $reflectionProperty->getValue($entity);
+        // Check if this is a field of a related entity
+        $fieldExplode = explode('::', $fieldName);
+        if (count($fieldExplode) > 1) {
+            $value = $this->getRelatedEntityValue($fieldExplode, $entity, $reflectionClass);
+        }
+        else {
+            $reflectionProperty = $reflectionClass->hasProperty($fieldName)
+            ? $reflectionClass->getProperty($fieldName) : false;
+            if ($reflectionProperty && $reflectionProperty->isPublic()) {
+                return $reflectionProperty->getValue($entity);
+            }
+
+            $getter = $this->getFieldGetter($reflectionClass, $fieldName);
+            $value = $getter->invoke($entity);
         }
 
+        return $value;
+    }
+
+    /**
+     * Returns the Reflection Method of the getter of the field
+     *
+     * @param \ReflectionClass $reflectionClass
+     * @param string $fieldName
+     * @throws EntityListException
+     * @return ReflectionMethod
+     */
+    protected function getFieldGetter(\ReflectionClass $reflectionClass, $fieldName)
+    {
         $getterFound = false;
 
         foreach (array('get', 'is', 'has') as $prefix) {
@@ -105,10 +128,42 @@ class SimpleColumn implements ColumnInterface
             $reflectionMethod = $reflectionClass->getMethod($getter);
 
             if ($reflectionMethod && $reflectionMethod->isPublic()) {
-                return $reflectionMethod->invoke($entity);
+                return $reflectionMethod;
             }
         }
 
         throw new EntityListException("The field $fieldName does not exist or is not accessible.");
+    }
+
+    /**
+     * Returns the value of a related entity
+     *
+     * @param array $fieldExplode
+     * @param mixed $entity
+     * @return NULL
+     */
+    protected function getRelatedEntityValue($fieldExplode, $entity, \ReflectionClass $reflectionClass)
+    {
+        $value = null;
+
+        // The value is a field of a subentity
+        foreach ($fieldExplode as $subFieldName) {
+            $getter = $this->getFieldGetter($reflectionClass, $subFieldName);
+
+            $value = $getter->invoke($entity);
+            if ($value) {
+                if (is_object($value)) {
+                    // If there are more subfields to treat this is the next entity
+                    $entity = $value;
+                    $reflectionClass = new \ReflectionClass($entity);
+                }
+            }
+            else {
+                // We have no value for this field
+                break;
+            }
+        }
+
+        return $value;
     }
 }
