@@ -24,6 +24,17 @@ class BaseColumn implements ColumnInterface
     protected $cell;
 
     /**
+     *
+     * @var string
+     */
+    protected $columnName;
+
+    public function __construct($columnName)
+    {
+        $this->columnName = $columnName;
+    }
+
+    /**
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getHeader()
      */
@@ -46,9 +57,9 @@ class BaseColumn implements ColumnInterface
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getCellContent()
      */
-    public function getCellContent($entity)
+    public function getCellElement($entity)
     {
-        return $this->cell->getCellContent($entity);
+        return $this->cell->getCellElement($entity);
     }
 
     /**
@@ -68,6 +79,16 @@ class BaseColumn implements ColumnInterface
      */
     public function getFields()
     {
-        return array($this->fieldName);
+        $fields = $this->cell->getFields();
+        return $fields;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getColumnName()
+    {
+        return $this->columnName;
     }
 }

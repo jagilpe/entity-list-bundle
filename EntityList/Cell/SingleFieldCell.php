@@ -4,6 +4,8 @@ namespace Module7\ComponentsBundle\EntityList\Cell;
 
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use AppBundle\Service\SettingsService;
+use Module7\ComponentsBundle\Render\RenderableInterface;
+use Module7\ComponentsBundle\Render\SimpleRenderableElement;
 
 /**
  * Simple implementation of the CellInterface that simply returns the content of the field
@@ -25,59 +27,59 @@ class SingleFieldCell extends AbstractCell
      */
     protected $formatter;
 
+    /**
+     *
+     * @var array
+     */
+    protected $options;
+
     public function __construct($fieldName, array $options = array())
     {
-        $this->value = $value;
-        $this->options = $options;
+        $this->fieldName = $fieldName;
 
         if (isset($options['formatter'])) {
             if ($options['formatter'] instanceof CellFormatterInterface) {
                 $this->formatter = $options['formatter'];
             }
         }
-    }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getBlockName()
-     */
-    public function getBlockName()
-    {
-        return 'm7_single_field_cell';
-    }
+        $options['block_name'] = isset($options['block_name']) ?  $options['block_name'] : 'm7_simple_cell';
 
-    /**
-     * Returns the content of the cell to be rendered
-     *
-     * @param mixed $entity
-     *
-     * @return mixed
-     */
-    public function getCellContent($entity)
-    {
+        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
 
-    }
-
-    /**
-     * Returns the value of the cell
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        if ($this->formatter) {
-            return $this->formatter->formatValue($this->value);
+        if (!isset($attributes['class'])) {
+            $attributes['class'] = array();
         }
-        else {
-            if ($this->value instanceof \DateTime) {
-                $formatter = new DateTimeCellFormatter($this->getDateTimeFormat());
-                return $formatter->formatValue($this->value);
-            }
-            else {
-                return $this->value;
-            }
-        }
+        $classes = array($this->getFieldName(), 'pc-condensed');
+        $attributes['class'] = array_merge($attributes['class'], $classes);
+
+        $options['attrs'] = $attributes;
+
+        $this->options = $options;
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
+     */
+    public function getFields()
+    {
+        return array($this->fieldName);
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
+     */
+    public function getCellElement($entity)
+    {
+        $content = array(
+            'fieldName' => $this->fieldName,
+            'value' => $this->getValue($entity),
+        );
+        return new SimpleRenderableElement($content, $this->options);
     }
 
     /**
@@ -106,6 +108,31 @@ class SingleFieldCell extends AbstractCell
         $attributes['class'] = array_merge($attributes['class'], $classes);
 
         return $attributes;
+    }
+
+    /**
+     * Returns the value of the cell
+     *
+     * @param $entity
+     *
+     * @return string
+     */
+    protected function getValue($entity)
+    {
+        $value = $this->getFieldValue($entity);
+
+        if ($this->formatter) {
+            return $this->formatter->formatValue($value);
+        }
+        else {
+            if ($value instanceof \DateTime) {
+                $formatter = new DateTimeCellFormatter($this->getDateTimeFormat());
+                return $formatter->formatValue($value);
+            }
+            else {
+                return $value;
+            }
+        }
     }
 
     protected function getDateTimeFormat()
@@ -142,5 +169,61 @@ class SingleFieldCell extends AbstractCell
         }
 
         return $value;
+    }
+
+    /**
+     * Returns the value of a related entity
+     *
+     * @param array $fieldExplode
+     * @param mixed $entity
+     * @return NULL
+     */
+    protected function getRelatedEntityValue($fieldExplode, $entity, \ReflectionClass $reflectionClass)
+    {
+        $value = null;
+
+        // The value is a field of a subentity
+        foreach ($fieldExplode as $subFieldName) {
+            $getter = $this->getFieldGetter($reflectionClass, $subFieldName);
+
+            $value = $getter->invoke($entity);
+            if ($value) {
+                if (is_object($value)) {
+                    // If there are more subfields to treat this is the next entity
+                    $entity = $value;
+                    $reflectionClass = new \ReflectionClass($entity);
+                }
+            }
+            else {
+                // We have no value for this field
+                break;
+            }
+        }
+
+        return $value;
+    }
+
+    /**
+     * Returns the Reflection Method of the getter of the field
+     *
+     * @param \ReflectionClass $reflectionClass
+     * @param string $fieldName
+     * @throws EntityListException
+     * @return ReflectionMethod
+     */
+    protected function getFieldGetter(\ReflectionClass $reflectionClass, $fieldName)
+    {
+        $getterFound = false;
+
+        foreach (array('get', 'is', 'has') as $prefix) {
+            $getter = $prefix.ucfirst($fieldName);
+            $reflectionMethod = $reflectionClass->getMethod($getter);
+
+            if ($reflectionMethod && $reflectionMethod->isPublic()) {
+                return $reflectionMethod;
+            }
+        }
+
+        throw new EntityListException("The field $fieldName does not exist or is not accessible.");
     }
 }

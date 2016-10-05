@@ -5,6 +5,7 @@ namespace Module7\ComponentsBundle\EntityList\Column;
 use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
 use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
 use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
+use Module7\ComponentsBundle\Render\RenderableInterface;
 
 /**
  * Defines an interface to work with the column of an entity list
@@ -21,13 +22,13 @@ interface ColumnInterface
     public function getHeader();
 
     /**
-     * Returns the cell that corresponds to a determined entity
+     * Returns the cell element that corresponds to a determined entity
      *
      * @param mixed $entity
      *
-     * @return CellInterface
+     * @return RenderableInterface
      */
-    public function getCellContent($entity);
+    public function getCellElement($entity);
 
     /**
      * Returns the fields included in this column
@@ -49,4 +50,11 @@ interface ColumnInterface
      * @param CellInterface $cell
      */
     public function setCell(CellInterface $cell);
+
+    /**
+     * Returns the name of the column
+     *
+     * @return string
+     */
+    public function getColumnName();
 }

@@ -43,4 +43,11 @@ interface RenderableInterface
      * @return array
      */
     public function getAttributes();
+
+    /**
+     * Returns the additional variables
+     *
+     * @return array
+     */
+    public function getVars();
 }

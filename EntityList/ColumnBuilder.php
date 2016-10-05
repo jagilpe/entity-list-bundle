@@ -20,7 +20,7 @@ class ColumnBuilder implements ColumnBuilderInterface
      */
     private $listColumn;
 
-    public function __construct($listColumnTypeClass = ColumnType::class, EntityListFactoryInterface $factory, array $options = array())
+    public function __construct($columnName, $listColumnTypeClass = ColumnType::class, EntityListFactoryInterface $factory, array $options = array())
     {
         $columnType = $factory->getEntityListColumnType($listColumnTypeClass);
 
@@ -30,7 +30,7 @@ class ColumnBuilder implements ColumnBuilderInterface
         $options = $optionsResolver->resolve($options);
 
         // Create the base entity list
-        $this->listColumn = new BaseColumn();
+        $this->listColumn = new BaseColumn($columnName);
 
         // Build the list
         $columnType->build($this, $options);
@@ -40,20 +40,26 @@ class ColumnBuilder implements ColumnBuilderInterface
      * Adds header definition to the column
      *
      * @param \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface $column
+     *
+     * @return ColumnBuilderInterface
      */
     public function setHeader(HeaderElementInterface $header, $options = array())
     {
         $this->listColumn->setHeader($header, $options);
+        return $this;
     }
 
     /**
      * Adds cell definition to the column
      *
      * @param \Module7\ComponentsBundle\EntityList\Cell\CellInterface $column
+     *
+     * @return ColumnBuilderInterface
      */
     public function setCell(CellInterface $cell, $options = array())
     {
         $this->listColumn->setCell($cell, $options);
+        return $this;
     }
 
     /**
@@ -61,6 +67,18 @@ class ColumnBuilder implements ColumnBuilderInterface
      */
     public function getListColumn()
     {
-        return $this->entityList;
+        return $this->listColumn;
     }
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     * @see \Module7\ComponentsBundle\EntityList\ColumnBuilderInterface::getColumnName()
+     */
+    public function getColumnName()
+    {
+        return $this->listColumn->getColumnName();
+    }
+
 }

@@ -14,7 +14,7 @@ trait RenderableBaseTrait
      *
      * @var array
      */
-    protected $options;
+    protected $options = array();
 
     /**
      * {@inheritDoc}
@@ -50,5 +50,14 @@ trait RenderableBaseTrait
     public function getAttributes()
     {
         return array();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getVars()
+     */
+    public function getVars()
+    {
+
     }
 }

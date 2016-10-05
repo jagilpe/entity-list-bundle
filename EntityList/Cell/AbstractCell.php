@@ -13,13 +13,6 @@ use AppBundle\Service\SettingsService;
  */
 abstract class AbstractCell implements CellInterface
 {
-    use RenderableBaseTrait;
-
-    /**
-     * @var array
-     */
-    protected $options = array();
-
     /**
      * Returns the name of the field
      *
@@ -46,6 +39,16 @@ abstract class AbstractCell implements CellInterface
         $attributes['class'] = array_merge($attributes['class'], $classes);
 
         return $attributes;
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
+     */
+    public function getFields()
+    {
+        return array($this->getFieldName());
     }
 
     private function getDateTimeFormat()

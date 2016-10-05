@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  *
  */
-abstract class AbstractColumnType
+abstract class AbstractColumnType implements ColumnTypeInterface
 {
     /**
      *
@@ -30,6 +30,10 @@ abstract class AbstractColumnType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            'translation_domain' => 'messages',
+            'label' => null,
+            'cell_options' => null,
+            'header_options' => null,
         ));
     }
 
@@ -45,5 +49,43 @@ abstract class AbstractColumnType
         }
 
         return $this->optionsResolver;
+    }
+
+    /**
+     * Returns the options for the cell
+     *
+     * @param array $options
+     *
+     * @return array
+     */
+    protected function getCellOptions($options)
+    {
+        $cellOptions = $options['cell_options'];
+
+        $cellOptions['translation_domain'] =
+            isset($cellOptions['translation_domain'])
+            ? $cellOptions['translation_domain']
+            : $options['translation_domain'];
+
+        return $cellOptions;
+    }
+
+    /**
+     * Returns the options for the header
+     *
+     * @param array $options
+     *
+     * @return array
+     */
+    protected function getHeaderOptions($options)
+    {
+        $headerOptions = $options['header_options'];
+
+        $headerOptions['translation_domain'] =
+            isset($headerOptions['translation_domain'])
+            ? $headerOptions['translation_domain']
+            : $options['translation_domain'];
+
+        return $headerOptions;
     }
 }

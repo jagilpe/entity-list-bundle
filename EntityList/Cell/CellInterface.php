@@ -9,14 +9,21 @@ use Module7\ComponentsBundle\Render\RenderableInterface;
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  */
-interface CellInterface extends RenderableInterface
+interface CellInterface
 {
     /**
      * Returns the content of the cell to be rendered
      *
      * @param mixed $entity
      *
-     * @return mixed
+     * @return RenderableInterface
      */
-    public function getCellContent($entity);
+    public function getCellElement($entity);
+
+    /**
+     * Returns the fields referenced in this cell
+     *
+     * @return array
+     */
+    public function getFields();
 }

@@ -18,6 +18,8 @@ interface ColumnBuilderInterface
      * Adds header definition to the column
      *
      * @param \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface $column
+     *
+     * @return ColumnBuilderInterface
      */
     public function setHeader(HeaderElementInterface $header, $options = array());
 
@@ -25,6 +27,8 @@ interface ColumnBuilderInterface
      * Adds cell definition to the column
      *
      * @param \Module7\ComponentsBundle\EntityList\Cell\CellInterface $column
+     *
+     * @return ColumnBuilderInterface
      */
     public function setCell(CellInterface $cell, $options = array());
 
@@ -34,4 +38,11 @@ interface ColumnBuilderInterface
      * @return \Module7\ComponentsBundle\EntityList\Column\ColumnInterface
      */
     public function getListColumn();
+
+    /**
+     * Returns the name of the column
+     *
+     * @return string
+     */
+    public function getColumnName();
 }

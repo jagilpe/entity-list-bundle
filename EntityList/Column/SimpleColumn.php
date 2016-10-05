@@ -193,4 +193,13 @@ class SimpleColumn implements ColumnInterface
 
         return $value;
     }
+
+    /**
+     *
+     * @return string
+     */
+    public function getColumnName()
+    {
+        return '';
+    }
 }

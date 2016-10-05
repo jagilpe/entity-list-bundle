@@ -39,7 +39,7 @@ class SimpleRow implements RowInterface
     {
         $entity = $this->entity;
         $children = array_map(function(ColumnInterface $column) use ($entity) {
-            return $column->getCellContent($entity);
+            return $column->getCellElement($entity);
         }, $this->columns);
 
         return $children;

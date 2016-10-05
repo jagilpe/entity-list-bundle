@@ -5,6 +5,7 @@ namespace Module7\ComponentsBundle\EntityList;
 use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
 use Module7\ComponentsBundle\Exception\EntityListException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Module7\ComponentsBundle\EntityList\ColumnType\ColumnTypeInterface;
 
 /**
  * Builder class to generate different Entity Lists
@@ -18,9 +19,12 @@ class EntityListBuilder implements EntityListBuilderInterface
      */
     private $entityList;
 
+    private $factory;
+
     public function __construct(array $entities, $listTypeClass = ListType::class, EntityListFactoryInterface $factory, array $options = array())
     {
         $entityType = $factory->getEntityListType($listTypeClass);
+        $this->factory = $factory;
 
         // Get the options
         $optionsResolver = new OptionsResolver();
@@ -71,10 +75,16 @@ class EntityListBuilder implements EntityListBuilderInterface
         }
 
         $reflectionClass = new \ReflectionClass($columnClass);
-        if (!$reflectionClass->implementsInterface(ColumnInterface::class)) {
-            throw new EntityListException('The columns class parameter must implement the '.ColumnInterface::class.' interface.');
+        if ($reflectionClass->implementsInterface(ColumnInterface::class)) {
+            $column = $reflectionClass->newInstance($columnName, $columnOptions);
+        }
+        elseif ($reflectionClass->implementsInterface(ColumnTypeInterface::class)) {
+            $column = $this->factory->createListColumn($columnName, $columnClass, $columnOptions);
+        }
+        else {
+            throw new EntityListException('Wrong class');
         }
 
-        return $reflectionClass->newInstance($columnName, $columnOptions);
+        return $column;
     }
 }

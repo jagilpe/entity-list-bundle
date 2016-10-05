@@ -44,13 +44,11 @@ class SimpleCell implements CellInterface
     }
 
     /**
-     * Returns the content of the cell to be rendered
      *
-     * @param mixed $entity
-     *
-     * @return mixed
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
      */
-    public function getCellContent($entity)
+    public function getCellElement($entity)
     {
 
     }

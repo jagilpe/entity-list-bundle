@@ -64,20 +64,22 @@ class EntityListFactory implements EntityListFactoryInterface
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::createListColumnBuilder()
      */
-    public function createListColumnBuilder($listColumnTypeClass = null, array $options = array())
+    public function createListColumnBuilder($columnName, $listColumnTypeClass = null, array $options = array())
     {
         $listColumnTypeClass = $listColumnTypeClass !== null ? $listColumnTypeClass : ColumnType::class;
-        $listBuilder = new ColumnBuilder($listColumnTypeClass, $this, $options);
+        $listBuilder = new ColumnBuilder($columnName, $listColumnTypeClass, $this, $options);
+
+        return $listBuilder;
     }
 
     /**
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::createListColumn()
      */
-    public function createListColumn($listColumnTypeClass = ColumnType::class, array $options = array())
+    public function createListColumn($columnName, $listColumnTypeClass = ColumnType::class, array $options = array())
     {
-        $listColumnType = $this->getEntityListColumnType($listColumnTypeClass);
-        return $listColumnType->getListColumn();
+        $listColumnBuilder = $this->createListColumnBuilder($columnName, $listColumnTypeClass, $options);
+        return $listColumnBuilder->getListColumn();
     }
 
     /**

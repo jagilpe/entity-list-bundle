@@ -52,22 +52,24 @@ interface EntityListFactoryInterface
     /**
      * Factory method to create a list column from an existent list type
      *
+     * @param string $columnName
      * @param string $listTypeClass
      * @param array $options
      *
-     * @return ColumnInterface
+     * @return ColumnBuilderInterface
      */
-    public function createListColumnBuilder($listColumnTypeClass = null, array $options = array());
+    public function createListColumnBuilder($columnName, $listColumnTypeClass = null, array $options = array());
 
     /**
      * Factory method to create a list column from an existent list type
      *
+     * @param string $columnName
      * @param string $listTypeClass
      * @param array $options
      *
      * @return ColumnInterface
      */
-    public function createListColumn($listColumnTypeClass = ColumnType::class, array $options = array());
+    public function createListColumn($columnName, $listColumnTypeClass = ColumnType::class, array $options = array());
 
     /**
      * Returns an instance of the given entity type list column class
