@@ -2,7 +2,6 @@
 
 namespace Module7\ComponentsBundle\EntityList;
 
-use Module7\ComponentsBundle\Module7ComponentsBundle;
 use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
 use Module7\ComponentsBundle\Exception\EntityListException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,12 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class EntityListBuilder implements EntityListBuilderInterface
 {
-    /**
-     *
-     * @var string
-     */
-    private $entityClass;
-
     /**
      * @var \Module7\ComponentsBundle\EntityList\EntityList
      */

@@ -6,6 +6,7 @@ use Module7\ComponentsBundle\EntityList\Header\SimpleHeaderElement;
 use Module7\ComponentsBundle\EntityList\Cell\SimpleCell;
 use Module7\ComponentsBundle\Exception\EntityListException;
 use Module7\ComponentsBundle\EntityList\Cell\CellFormatterInterface;
+use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
 
 /**
  * Defines a simple column definition that simply references a field in the Entity
@@ -29,6 +30,12 @@ class SimpleColumn implements ColumnInterface
      */
     protected $formatter;
 
+    /**
+     *
+     * @var HeaderElementInterface
+     */
+    protected $header;
+
     public function __construct($fieldName, array $options = array())
     {
         $this->fieldName = $fieldName;
@@ -39,6 +46,8 @@ class SimpleColumn implements ColumnInterface
                 $this->formatter = $options['formatter'];
             }
         }
+
+        $this->header = new SimpleHeaderElement($this->fieldName, $this->options);
     }
 
     /**
@@ -47,7 +56,16 @@ class SimpleColumn implements ColumnInterface
      */
     public function getHeader()
     {
-        return new SimpleHeaderElement($this->fieldName, $this->options);
+        return $this->header;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::setHeader()
+     */
+    public function setHeader(HeaderElementInterface $header)
+    {
+        $this->header = $header;
     }
 
     /**
@@ -80,6 +98,15 @@ class SimpleColumn implements ColumnInterface
     public function getFields()
     {
         return array($this->fieldName);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::setCell()
+     */
+    public function setCell(CellInterface $cell)
+    {
+
     }
 
     /**

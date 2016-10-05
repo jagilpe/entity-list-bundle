@@ -11,9 +11,13 @@ use AppBundle\Service\SettingsService;
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  *
  */
-class SimpleCell implements CellInterface
+class SingleFieldCell extends AbstractCell
 {
-    use RenderableBaseTrait;
+    /**
+     *
+     * @var string
+     */
+    protected $fieldName;
 
     /**
      *
@@ -21,7 +25,7 @@ class SimpleCell implements CellInterface
      */
     protected $formatter;
 
-    public function __construct(array $options = array())
+    public function __construct($fieldName, array $options = array())
     {
         $this->value = $value;
         $this->options = $options;
@@ -40,7 +44,7 @@ class SimpleCell implements CellInterface
      */
     public function getBlockName()
     {
-        return 'm7_simple_cell';
+        return 'm7_single_field_cell';
     }
 
     /**
@@ -104,10 +108,39 @@ class SimpleCell implements CellInterface
         return $attributes;
     }
 
-    private function getDateTimeFormat()
+    protected function getDateTimeFormat()
     {
         return isset($this->options['datetime_format'])
             ? $this->options['datetime_format']
             : SettingsService::DEFAULT_DATE_FORMAT;
+    }
+
+    /**
+     *
+     * @param unknown $entity
+     */
+    protected function getFieldValue($entity)
+    {
+        $reflectionClass = new \ReflectionClass($entity);
+
+        $fieldName = $this->fieldName;
+
+        // Check if this is a field of a related entity
+        $fieldExplode = explode('::', $fieldName);
+        if (count($fieldExplode) > 1) {
+            $value = $this->getRelatedEntityValue($fieldExplode, $entity, $reflectionClass);
+        }
+        else {
+            $reflectionProperty = $reflectionClass->hasProperty($fieldName)
+            ? $reflectionClass->getProperty($fieldName) : false;
+            if ($reflectionProperty && $reflectionProperty->isPublic()) {
+                return $reflectionProperty->getValue($entity);
+            }
+
+            $getter = $this->getFieldGetter($reflectionClass, $fieldName);
+            $value = $getter->invoke($entity);
+        }
+
+        return $value;
     }
 }

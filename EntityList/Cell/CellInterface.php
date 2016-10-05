@@ -11,5 +11,12 @@ use Module7\ComponentsBundle\Render\RenderableInterface;
  */
 interface CellInterface extends RenderableInterface
 {
-
+    /**
+     * Returns the content of the cell to be rendered
+     *
+     * @param mixed $entity
+     *
+     * @return mixed
+     */
+    public function getCellContent($entity);
 }

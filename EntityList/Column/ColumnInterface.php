@@ -4,6 +4,7 @@ namespace Module7\ComponentsBundle\EntityList\Column;
 
 use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
 use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
+use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
 
 /**
  * Defines an interface to work with the column of an entity list
@@ -34,4 +35,18 @@ interface ColumnInterface
      * @return array
      */
     public function getFields();
+
+    /**
+     * Adds a header element to the column
+     *
+     * @param HeaderElementInterface $header
+     */
+    public function setHeader(HeaderElementInterface $header);
+
+    /**
+     * Adds a cell element to the column
+     *
+     * @param CellInterface $cell
+     */
+    public function setCell(CellInterface $cell);
 }

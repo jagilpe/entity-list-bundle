@@ -2,6 +2,8 @@
 
 namespace Module7\ComponentsBundle\EntityList;
 
+use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
+
 /**
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
@@ -23,7 +25,7 @@ interface EntityListFactoryInterface
      *
      * @return Module7\ComponentsBundle\EntityList\EntityListBuilderInterface
      */
-    public function createListBuilder(array $entities, $listTypeClass = ListType::class, array $options = array());
+    public function createListBuilder(array $entities, $listTypeClass = null, array $options = array());
 
     /**
      * Factory method to create a list from an existent list type
@@ -46,4 +48,35 @@ interface EntityListFactoryInterface
      * @return ListTypeInterface
      */
     public function getEntityListType($typeClass);
+
+    /**
+     * Factory method to create a list column from an existent list type
+     *
+     * @param string $listTypeClass
+     * @param array $options
+     *
+     * @return ColumnInterface
+     */
+    public function createListColumnBuilder($listColumnTypeClass = null, array $options = array());
+
+    /**
+     * Factory method to create a list column from an existent list type
+     *
+     * @param string $listTypeClass
+     * @param array $options
+     *
+     * @return ColumnInterface
+     */
+    public function createListColumn($listColumnTypeClass = ColumnType::class, array $options = array());
+
+    /**
+     * Returns an instance of the given entity type list column class
+     *
+     * If the type is registered as a service, returns a reference to the service
+     *
+     * @param string $typeClass
+     *
+     * @return ListTypeInterface
+     */
+    public function getEntityListColumnType($typeClass);
 }

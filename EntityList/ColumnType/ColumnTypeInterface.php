@@ -1,23 +1,24 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Column;
+namespace Module7\ComponentsBundle\EntityList\ColumnType;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Module7\ComponentsBundle\EntityList\ColumnBuilderInterface;
 
 /**
+ * Interface for the creation of entity list columns through type classes
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
- *
  */
 interface ColumnTypeInterface
 {
     /**
-     * Builds the column
+     * Builds the entity list
      *
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildColumn(ColumnBuilderInterface $builder, array $options = array());
+    public function build(ColumnBuilderInterface $builder, array $options = array());
 
     /**
      * Configures the options for this type.
