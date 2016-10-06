@@ -3,6 +3,7 @@
 namespace Module7\ComponentsBundle\EntityList;
 
 use Module7\ComponentsBundle\EntityList\ColumnType\ColumnType;
+use Module7\ComponentsBundle\EntityList\ColumnType\ColumnTypeInterface;
 
 class EntityListFactory implements EntityListFactoryInterface
 {
@@ -94,6 +95,16 @@ class EntityListFactory implements EntityListFactoryInterface
         elseif (class_exists($columnTypeClass)) {
             return new $columnTypeClass();
         }
+    }
+
+    /**
+     * Adds a Entity List Type to the list of available types registered as service
+     *
+     * @param ListTypeInterface $entityListType
+     */
+    public function addEntityListType(ListTypeInterface $entityListType)
+    {
+        $this->listTypes[get_class($entityListType)] = $entityListType;
     }
 
     /**

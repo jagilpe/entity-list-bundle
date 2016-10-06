@@ -22,10 +22,16 @@ class EntityListTypePass implements CompilerPassInterface
 
         $definition = $container->findDefinition('m7_components.list_factory');
 
-        $taggedServices = $container->findTaggedServiceIds('m7_components.list_type');
+        $entityListTypes = $container->findTaggedServiceIds('m7_components.list_type');
 
-        foreach ($taggedServices as $id => $tags) {
+        foreach ($entityListTypes as $id => $tags) {
             $definition->addMethodCall('addEntityListType', array(new Reference($id)));
+        }
+
+        $listColumnTypes = $container->findTaggedServiceIds('m7_components.column_type');
+
+        foreach ($listColumnTypes as $id => $tags) {
+            $definition->addMethodCall('addEntityListColumnType', array(new Reference($id)));
         }
     }
 }

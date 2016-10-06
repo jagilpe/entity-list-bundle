@@ -37,8 +37,8 @@ abstract class AbstractColumnType implements ColumnTypeInterface
         $resolver->setDefaults(array(
             'translation_domain' => 'messages',
             'label' => null,
-            'cell_options' => null,
-            'header_options' => null,
+            'cell-options' => null,
+            'header-options' => null,
         ));
     }
 
@@ -65,7 +65,7 @@ abstract class AbstractColumnType implements ColumnTypeInterface
      */
     protected function getCellOptions($options)
     {
-        $cellOptions = $options['cell_options'];
+        $cellOptions = $options['cell-options'];
 
         $inheritableOptions = $this->getInheritableOptions();
 
@@ -88,7 +88,7 @@ abstract class AbstractColumnType implements ColumnTypeInterface
      */
     protected function getHeaderOptions($options)
     {
-        $headerOptions = $options['header_options'];
+        $headerOptions = $options['header-options'];
 
         $inheritableOptions = $this->getInheritableOptions();
 
