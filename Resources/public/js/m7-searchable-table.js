@@ -5,7 +5,7 @@
     	this.element = element;
     	this.options = {
     		pagination: true,
-    		itemsPerPage: 15,
+    		itemsPerPage: 15
     	};
     	
     	this.init(options);
@@ -30,6 +30,9 @@
     	    	}) ];
     	    }
     	    this.list = new List(this.element, listOptions);
+    	    this.list.on('updated', function(){
+    	    	plugin.options.onUpdate(plugin.element);
+    	    });
     	},
     	
     	_loadPagination : function() {
