@@ -4,10 +4,10 @@
 	<div class="pc-top-content-block-wrapper">
 		<div class="pc-input-wrapper">
 			<input class="pc-search search"
-				placeholder="{{ 'share.search'|trans }}" />
+				placeholder="{{ 'share.search'|trans({}, element.options.translation_domain) }}" />
 			<i class="glyphicon glyphicon-search"></i>
 		</div>
-		<div class="pc-table-title">{{ element.label|trans }}</div>
+		<div class="pc-table-title">{{ element.label|trans({}, element.options.translation_domain) }}</div>
 	</div>
 	<table class="table table-case" id="houses-list">
 		<thead>
@@ -30,12 +30,16 @@
 {% endblock m7_simple_header %}
 
 {% block m7_simple_header_element %}
-<th{{ m7_attributes(element.attributes)}}><a href='#' class="sort" data-sort="{{ element.fieldName }}">{{ element.label|trans }}</a></th>
+<th{{ m7_attributes(element.attributes)}}>
+	<a href='#' class="sort" data-sort="{{ element.fieldName }}">
+        {{ element.label|trans({}, element.options.translation_domain) }}
+	</a>
+</th>
 {% endblock m7_simple_header_element %}
 
 {% block m7_simple_body %}
     {% if element.children is not iterable or element.children is empty %}
-        <tr><td class="text-center">{{ 'no_results_found'|trans }}</td></tr>
+        <tr><td class="text-center">{{ 'no_results_found'|trans({}, element.options.translation_domain) }}</td></tr>
     {% endif %}
     {% for child in element.children %}
         {{ m7_element_render(child) }}
