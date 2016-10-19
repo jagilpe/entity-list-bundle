@@ -85,7 +85,7 @@ class EntityList implements RenderableInterface
      */
     public function getBody()
     {
-        return new SimpleBody($this->entities, $this->columns);
+        return new SimpleBody($this->entities, $this->columns, $this->options);
     }
 
     /**

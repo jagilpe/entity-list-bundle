@@ -26,10 +26,11 @@ class SimpleBody implements BodyInterface
      */
     protected $columns;
 
-    public function __construct(array $entities, array $columns)
+    public function __construct(array $entities, array $columns, array $options = array())
     {
         $this->entities = $entities;
         $this->columns = $columns;
+        $this->options = $options;
     }
 
     /**
