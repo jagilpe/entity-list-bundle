@@ -7,6 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Module7\ComponentsBundle\EntityList\Header\SimpleHeaderElement;
 use Module7\ComponentsBundle\EntityList\Cell\SingleFieldCell;
 use Module7\ComponentsBundle\Exception\EntityListException;
+use Module7\ComponentsBundle\EntityList\Cell\ArrayFieldCell;
 
 /**
  *
@@ -23,8 +24,9 @@ class SingleFieldColumnType extends AbstractColumnType
     public function build(ColumnBuilderInterface $builder, array $options = array())
     {
         $fieldName = $options['field_name'] ? $options['field_name'] : $builder->getColumnName();
+        $cellClass = $options['multiple'] ? ArrayFieldCell::class : SingleFieldCell::class;
         $builder
-            ->setCell(new SingleFieldCell($fieldName, $this->getCellOptions($options)))
+            ->setCell(new $cellClass($fieldName, $this->getCellOptions($options)))
             ->setHeader(new SimpleHeaderElement($fieldName, $this->getHeaderOptions($options)));
     }
 
@@ -38,6 +40,7 @@ class SingleFieldColumnType extends AbstractColumnType
 
         $resolver->setDefaults(array(
             'field_name' => null,
+            'multiple' => false,
         ));
     }
 }
