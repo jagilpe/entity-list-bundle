@@ -18,31 +18,13 @@ class CallbackCell extends AbstractCell
 {
     /**
      *
-     * @var string
-     */
-    protected $fieldName;
-
-    /**
-     *
-     * @var array
-     */
-    protected $options;
-
-    /**
-     *
      * @var callable
      */
     protected $contentCallback;
 
     public function __construct($fieldName, array $options = array())
     {
-        $this->fieldName = $fieldName;
-
-        if (isset($options['formatter'])) {
-            if ($options['formatter'] instanceof CellFormatterInterface) {
-                $this->formatter = $options['formatter'];
-            }
-        }
+        parent::__construct($fieldName, $options);
 
         if (isset($options['content-callback']) && is_callable($options['content-callback'])) {
             $this->contentCallback = $options['content-callback'];
@@ -50,18 +32,6 @@ class CallbackCell extends AbstractCell
         else {
             throw new EntityListException('The option content-callback is required and must be callable.');
         }
-
-        $options['block_name'] = isset($options['block_name']) ?  $options['block_name'] : 'm7_simple_cell';
-
-        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
-
-        if (!isset($attributes['class'])) {
-            $attributes['class'] = array();
-        }
-        $classes = array($this->getFieldName(), 'pc-condensed');
-        $attributes['class'] = array_merge($attributes['class'], $classes);
-
-        $options['attrs'] = $attributes;
 
         $this->options = $options;
     }
@@ -90,31 +60,8 @@ class CallbackCell extends AbstractCell
         return new SimpleRenderableElement($content, $this->options);
     }
 
-    /**
-     * Returns the name of the field
-     *
-     * @return NULL|string
-     */
-    public function getFieldName()
+    protected function getDefaultBlockName()
     {
-        return isset($this->options['fieldName']) ? $this->options['fieldName'] : null;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
-     */
-    public function getAttributes()
-    {
-        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
-
-        if (!isset($attributes['class'])) {
-            $attributes['class'] = array();
-        }
-        $classes = array($this->getFieldName(), 'pc-condensed');
-        $attributes['class'] = array_merge($attributes['class'], $classes);
-
-        return $attributes;
+        return 'm7_simple_cell';
     }
 }

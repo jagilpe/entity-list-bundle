@@ -49,7 +49,7 @@ trait RenderableBaseTrait
      */
     public function getAttributes()
     {
-        return array();
+        return isset($this->options['attrs']) ? $this->options['attrs'] : array();
     }
 
     /**

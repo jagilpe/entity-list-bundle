@@ -14,13 +14,53 @@ use AppBundle\Service\SettingsService;
 abstract class AbstractCell implements CellInterface
 {
     /**
+     * @var string
+     */
+    protected $fieldName;
+
+    /**
+     * @var string
+     */
+    protected $formatter;
+
+    /**
+     * @var array
+     */
+    protected $options;
+
+    public function __construct($fieldName, array $options = array())
+    {
+        $this->fieldName = $fieldName;
+
+        if (isset($options['formatter'])) {
+            if ($options['formatter'] instanceof CellFormatterInterface) {
+                $this->formatter = $options['formatter'];
+            }
+        }
+
+        $options['block_name'] = isset($options['block_name']) ?  $options['block_name'] : $this->getDefaultBlockName();
+
+        $attributes = isset($options['attrs']) ? $options['attrs'] : array();
+
+        if (!isset($attributes['class'])) {
+            $attributes['class'] = array();
+        }
+        $classes = is_array($attributes['class']) ? $attributes['class'] : array($attributes['class']);
+        $attributes['class'] = array_merge($classes, array($this->getFieldName(), 'pc-condensed'));
+
+        $options['attrs'] = $attributes;
+
+        $this->options = $options;
+    }
+
+    /**
      * Returns the name of the field
      *
      * @return NULL|string
      */
     public function getFieldName()
     {
-        return isset($this->options['fieldName']) ? $this->options['fieldName'] : null;
+        return $this->fieldName;
     }
 
     /**
@@ -30,15 +70,7 @@ abstract class AbstractCell implements CellInterface
      */
     public function getAttributes()
     {
-        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
-
-        if (!isset($attributes['class'])) {
-            $attributes['class'] = array();
-        }
-        $classes = array($this->getFieldName(), 'pc-condensed');
-        $attributes['class'] = array_merge($attributes['class'], $classes);
-
-        return $attributes;
+        return $this->options['attrs'];
     }
 
     /**
@@ -57,4 +89,11 @@ abstract class AbstractCell implements CellInterface
             ? $this->options['datetime_format']
             : SettingsService::DEFAULT_DATE_FORMAT;
     }
+
+    /**
+     * Returns the default block name
+     *
+     * @return string
+     */
+    abstract protected function getDefaultBlockName();
 }

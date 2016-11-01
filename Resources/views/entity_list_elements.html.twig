@@ -22,6 +22,7 @@
 {% endblock m7_entity_list %}
 
 {% block m7_simple_header %}
+{{  }}
 <tr{{ m7_attributes(element.attributes)}}>
 	{% for child in element.children %}
 	{{ m7_element_render(child) }}
@@ -55,7 +56,7 @@
 {% endblock m7_simple_row %}
 
 {% block m7_simple_cell %}
-<td class="{{ element.fieldName }} pc-condensed">
+<td{{ m7_attributes(element.options.attrs)}}>
 	<div class="pc-entity-field" data-field="{{ element.fieldName }}">{{ element.value }}</div>
 </td>
 {% endblock m7_simple_cell %}

@@ -17,49 +17,6 @@ class SingleFieldCell extends AbstractCell
 {
     /**
      *
-     * @var string
-     */
-    protected $fieldName;
-
-    /**
-     *
-     * @var CellFormatterInterface
-     */
-    protected $formatter;
-
-    /**
-     *
-     * @var array
-     */
-    protected $options;
-
-    public function __construct($fieldName, array $options = array())
-    {
-        $this->fieldName = $fieldName;
-
-        if (isset($options['formatter'])) {
-            if ($options['formatter'] instanceof CellFormatterInterface) {
-                $this->formatter = $options['formatter'];
-            }
-        }
-
-        $options['block_name'] = isset($options['block_name']) ?  $options['block_name'] : 'm7_simple_cell';
-
-        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
-
-        if (!isset($attributes['class'])) {
-            $attributes['class'] = array();
-        }
-        $classes = array($this->getFieldName(), 'pc-condensed');
-        $attributes['class'] = array_merge($attributes['class'], $classes);
-
-        $options['attrs'] = $attributes;
-
-        $this->options = $options;
-    }
-
-    /**
-     *
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
      */
@@ -80,34 +37,6 @@ class SingleFieldCell extends AbstractCell
             'value' => $this->getValue($entity),
         );
         return new SimpleRenderableElement($content, $this->options);
-    }
-
-    /**
-     * Returns the name of the field
-     *
-     * @return NULL|string
-     */
-    public function getFieldName()
-    {
-        return isset($this->options['fieldName']) ? $this->options['fieldName'] : null;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
-     */
-    public function getAttributes()
-    {
-        $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
-
-        if (!isset($attributes['class'])) {
-            $attributes['class'] = array();
-        }
-        $classes = array($this->getFieldName(), 'pc-condensed');
-        $attributes['class'] = array_merge($attributes['class'], $classes);
-
-        return $attributes;
     }
 
     /**
@@ -225,5 +154,15 @@ class SingleFieldCell extends AbstractCell
         }
 
         throw new EntityListException("The field $fieldName does not exist or is not accessible.");
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\AbstractCell::getDefaultBlockName()
+     */
+    protected function getDefaultBlockName()
+    {
+        return 'm7_simple_cell';
     }
 }
