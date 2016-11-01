@@ -22,7 +22,6 @@
 {% endblock m7_entity_list %}
 
 {% block m7_simple_header %}
-{{  }}
 <tr{{ m7_attributes(element.attributes)}}>
 	{% for child in element.children %}
 	{{ m7_element_render(child) }}
