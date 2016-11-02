@@ -55,7 +55,7 @@
 {% endblock m7_simple_row %}
 
 {% block m7_simple_cell %}
-<td{{ m7_attributes(element.options.attrs)}}>
+<td{{ m7_attributes(element.attributes)}}>
 	<div class="pc-entity-field" data-field="{{ element.fieldName }}">{{ element.value }}</div>
 </td>
 {% endblock m7_simple_cell %}

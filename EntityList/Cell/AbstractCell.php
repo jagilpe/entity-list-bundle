@@ -4,6 +4,8 @@ namespace Module7\ComponentsBundle\EntityList\Cell;
 
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use AppBundle\Service\SettingsService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Module7\ComponentsBundle\Render\SimpleRenderableElement;
 
 /**
  * Abstract class to be used as base to implement the CellInterface
@@ -54,6 +56,20 @@ abstract class AbstractCell implements CellInterface
     }
 
     /**
+     *
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
+     */
+    public function getCellElement($entity)
+    {
+        $content = array(
+            'fieldName' => $this->fieldName,
+            'value' => $this->getCellContent($entity),
+        );
+        return new SimpleRenderableElement($content, $this->options);
+    }
+
+    /**
      * Returns the name of the field
      *
      * @return NULL|string
@@ -61,26 +77,6 @@ abstract class AbstractCell implements CellInterface
     public function getFieldName()
     {
         return $this->fieldName;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
-     */
-    public function getAttributes()
-    {
-        return $this->options['attrs'];
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
-     */
-    public function getFields()
-    {
-        return array($this->getFieldName());
     }
 
     private function getDateTimeFormat()
@@ -96,4 +92,12 @@ abstract class AbstractCell implements CellInterface
      * @return string
      */
     abstract protected function getDefaultBlockName();
+
+    /**
+     * Returns the content to be rendered in the cell
+     *
+     * @param mixed $entity
+     * @return string
+     */
+    abstract protected function getCellContent($entity);
 }

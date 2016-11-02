@@ -5,7 +5,6 @@ namespace Module7\ComponentsBundle\EntityList\Cell;
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use AppBundle\Service\SettingsService;
 use Module7\ComponentsBundle\Render\RenderableInterface;
-use Module7\ComponentsBundle\Render\SimpleRenderableElement;
 use Module7\ComponentsBundle\Exception\EntityListException;
 
 /**
@@ -17,7 +16,6 @@ use Module7\ComponentsBundle\Exception\EntityListException;
 class CallbackCell extends AbstractCell
 {
     /**
-     *
      * @var callable
      */
     protected $contentCallback;
@@ -33,11 +31,10 @@ class CallbackCell extends AbstractCell
             throw new EntityListException('The option content-callback is required and must be callable.');
         }
 
-        $this->options = $options;
+        $this->options = array_merge($this->options, $options);
     }
 
     /**
-     *
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
      */
@@ -47,19 +44,18 @@ class CallbackCell extends AbstractCell
     }
 
     /**
-     *
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
      */
-    public function getCellElement($entity)
+    public function getCellContent($entity)
     {
-        $content = array(
-            'fieldName' => $this->fieldName,
-            'value' => call_user_func($this->contentCallback, $entity),
-        );
-        return new SimpleRenderableElement($content, $this->options);
+        return call_user_func($this->contentCallback, $entity);
     }
 
+    /**
+     * {@inheritDoc}
+     * @see \Module7\ComponentsBundle\EntityList\Cell\AbstractCell::getDefaultBlockName()
+     */
     protected function getDefaultBlockName()
     {
         return 'm7_simple_cell';

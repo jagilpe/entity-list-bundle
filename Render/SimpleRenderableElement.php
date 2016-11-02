@@ -44,15 +44,6 @@ class SimpleRenderableElement extends AbstractRenderableElement
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
-     */
-    public function getAttributes()
-    {
-        return isset($this->options['attrs']) ? $this->options['attrs'] : array();
-    }
-
-    /**
-     * {@inheritDoc}
      * @see \Module7\ComponentsBundle\Render\RenderableInterface::getBlockName()
      */
     public function getBlockName()

@@ -5,7 +5,6 @@ namespace Module7\ComponentsBundle\EntityList\Cell;
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use AppBundle\Service\SettingsService;
 use Module7\ComponentsBundle\Render\RenderableInterface;
-use Module7\ComponentsBundle\Render\SimpleRenderableElement;
 
 /**
  * Simple implementation of the CellInterface that simply returns the content of the field
@@ -26,17 +25,12 @@ class SingleFieldCell extends AbstractCell
     }
 
     /**
-     *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
+     * @see \Module7\ComponentsBundle\EntityList\Cell\AbstractCell::getCellContent()
      */
-    public function getCellElement($entity)
+    protected function getCellContent($entity)
     {
-        $content = array(
-            'fieldName' => $this->fieldName,
-            'value' => $this->getValue($entity),
-        );
-        return new SimpleRenderableElement($content, $this->options);
+        return $this->getValue($entity);
     }
 
     /**
