@@ -11,7 +11,6 @@ namespace Module7\ComponentsBundle\Render;
 trait RenderableBaseTrait
 {
     /**
-     *
      * @var array
      */
     protected $options = array();
@@ -22,7 +21,17 @@ trait RenderableBaseTrait
      */
     public function getLabel()
     {
-        return isset($this->options['label']) ? $this->options['label'] : null;
+        $label = false;
+        if (isset($this->options['label_callback'])
+            && is_callable($this->options['label_callback'])) {
+            $label = call_user_func($this->options['label_callback']);
+        }
+
+        if (!$label) {
+            $label = isset($this->options['label']) ? $this->options['label'] : null;
+        }
+
+        return $label;
     }
 
     /**

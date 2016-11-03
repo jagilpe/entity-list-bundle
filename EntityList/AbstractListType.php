@@ -29,6 +29,7 @@ abstract class AbstractListType implements ListTypeInterface
         $resolver->setDefaults(array(
             'attrs' => array(),
             'label' => null,
+            'label_callback' => null,
             'translation_domain' => 'messages',
             'block_name' => null,
             'entity_class' => null,
