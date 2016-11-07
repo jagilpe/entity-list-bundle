@@ -31,7 +31,27 @@ class SingleFieldCell extends AbstractCell
      */
     protected function getCellContent($entity)
     {
-        return $this->getValue($entity);
+        $content = $this->getValue($entity);
+
+        if (isset($this->options['translate_content']) && $this->options['translate_content']) {
+            $translator = isset($this->options['translator']) ? $this->options['translator'] : null;
+            if ($translator) {
+                $content = isset($this->options['translation_content_prefix'])
+                    ? $this->options['translation_content_prefix'].$content
+                    : $content;
+
+                $translationOptions = isset($this->options['translation_options'])
+                    ? $this->options['translation_options']
+                    : array();
+
+                $translationDomain = isset($this->options['translation_domain'])
+                    ? $this->options['translation_domain']
+                    : null;
+
+                $content = $translator->trans($content, $translationOptions, $translationDomain);
+            }
+        }
+        return $content;
     }
 
     /**

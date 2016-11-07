@@ -76,6 +76,10 @@ abstract class AbstractColumnType implements ColumnTypeInterface
                 : $options[$inheritableOption];
         }
 
+        if (isset($cellOptions['translate_content']) && $cellOptions['translate_content']) {
+            $cellOptions['translator'] = $this->translator;
+        }
+
         return $cellOptions;
     }
 
