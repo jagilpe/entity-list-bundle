@@ -5,6 +5,7 @@ namespace Module7\ComponentsBundle\EntityList\Cell;
 use Module7\ComponentsBundle\Render\RenderableBaseTrait;
 use AppBundle\Service\SettingsService;
 use Module7\ComponentsBundle\Render\RenderableInterface;
+use Doctrine\Common\Util\ClassUtils;
 
 /**
  * Simple implementation of the CellInterface that simply returns the content of the field
@@ -71,7 +72,7 @@ class SingleFieldCell extends AbstractCell
      */
     protected function getFieldValue($entity)
     {
-        $reflectionClass = new \ReflectionClass($entity);
+        $reflectionClass = ClassUtils::newReflectionObject($entity);
 
         $fieldName = $this->fieldName;
 
@@ -114,7 +115,7 @@ class SingleFieldCell extends AbstractCell
                 if (is_object($value)) {
                     // If there are more subfields to treat this is the next entity
                     $entity = $value;
-                    $reflectionClass = new \ReflectionClass($entity);
+                    $reflectionClass = ClassUtils::newReflectionObject($entity);
                 }
             }
             else {
