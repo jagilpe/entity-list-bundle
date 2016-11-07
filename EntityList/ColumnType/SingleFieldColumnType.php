@@ -8,6 +8,7 @@ use Module7\ComponentsBundle\EntityList\Header\SimpleHeaderElement;
 use Module7\ComponentsBundle\EntityList\Cell\SingleFieldCell;
 use Module7\ComponentsBundle\Exception\EntityListException;
 use Module7\ComponentsBundle\EntityList\Cell\ArrayFieldCell;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  *
@@ -16,6 +17,17 @@ use Module7\ComponentsBundle\EntityList\Cell\ArrayFieldCell;
  */
 class SingleFieldColumnType extends AbstractColumnType
 {
+    /**
+     *
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      *
      * @param EntityListBuilderInterface $builder
