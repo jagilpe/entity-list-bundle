@@ -32,6 +32,7 @@ class SingleFieldCell extends AbstractCell
     protected function getCellContent($entity)
     {
         $content = $this->getValue($entity);
+        dump($content);
 
         if (isset($this->options['translate_content']) && $this->options['translate_content']) {
             $translator = isset($this->options['translator']) ? $this->options['translator'] : null;
@@ -51,6 +52,8 @@ class SingleFieldCell extends AbstractCell
                 $content = $translator->trans($content, $translationOptions, $translationDomain);
             }
         }
+
+        dump($content);
         return $content;
     }
 
@@ -92,7 +95,7 @@ class SingleFieldCell extends AbstractCell
      */
     protected function getFieldValue($entity)
     {
-        $reflectionClass = ClassUtils::newReflectionObject($entity);
+        $reflectionClass = new \ReflectionClass($entity);
 
         $fieldName = $this->fieldName;
 
@@ -135,7 +138,7 @@ class SingleFieldCell extends AbstractCell
                 if (is_object($value)) {
                     // If there are more subfields to treat this is the next entity
                     $entity = $value;
-                    $reflectionClass = ClassUtils::newReflectionObject($entity);
+                    $reflectionClass = new \ReflectionObject($entity);
                 }
             }
             else {
