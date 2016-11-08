@@ -32,8 +32,6 @@ class SingleFieldCell extends AbstractCell
     protected function getCellContent($entity)
     {
         $content = $this->getValue($entity);
-        dump($content);
-
         if (isset($this->options['translate_content']) && $this->options['translate_content']) {
             $translator = isset($this->options['translator']) ? $this->options['translator'] : null;
             if ($translator) {
@@ -52,8 +50,6 @@ class SingleFieldCell extends AbstractCell
                 $content = $translator->trans($content, $translationOptions, $translationDomain);
             }
         }
-
-        dump($content);
         return $content;
     }
 
