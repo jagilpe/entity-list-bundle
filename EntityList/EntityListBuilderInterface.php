@@ -13,9 +13,13 @@ interface EntityListBuilderInterface
     /**
      * Adds a column interface definition to the List
      *
-     * @param \Module7\ComponentsBundle\EntityList\Column\ColumnInterface $column
+     * @param mixed $column
+     * @param string $columnClass
+     * @param array $options
+     *
+     * @return EntityListBuilderInterface
      */
-    public function add($column, $columnClass = null, $options = array());
+    public function add($column, $columnClass = null, array $options = array());
 
     /**
      * Returns the built entity list
