@@ -6,8 +6,7 @@
     var Plugin = function(element, options) {
         this.element = element;
         this.options = {
-            pagination: true,
-            itemsPerPage: 15
+            pagination: true
         };
 
         this.init(options);
@@ -20,10 +19,11 @@
             var $element = $(this.element);
 
             this.searchFields = $element.attr("data-terms").split(',');
+            this.pagerItemsPerPage = parseInt($element.attr("data-items-per-page"));
 
             var listOptions = {
                 valueNames: this.searchFields,
-                page: this.options.itemsPerPage
+                page: this.pagerItemsPerPage
             };
 
             if (this._loadPagination()) {
@@ -42,7 +42,7 @@
                 var list = $(this.element).find('.list').first();
                 var items = list.children();
 
-                return items.length > this.options.itemsPerPage;
+                return items.length > this.pagerItemsPerPage;
             } else {
                 return false;
             }

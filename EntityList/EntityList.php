@@ -117,8 +117,8 @@ class EntityList implements RenderableInterface
         }
         $classes = array('table-responsive', 'm7-searchable-table');
         $attributes['class'] = array_merge($attributes['class'], $classes);
-
         $attributes['data-terms'] = implode(',', $this->getFields());
+        $attributes['data-items-per-page'] = $this->options['pager-items-per-page'];
 
         return $attributes;
     }

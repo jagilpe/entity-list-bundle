@@ -34,6 +34,7 @@ abstract class AbstractListType implements ListTypeInterface
             'block_name' => null,
             'entity_class' => null,
             'column_type_options' => null,
+            'pager-items-per-page' => 15,
         ));
     }
 
