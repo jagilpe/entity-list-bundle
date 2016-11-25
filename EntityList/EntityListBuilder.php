@@ -43,7 +43,7 @@ class EntityListBuilder implements EntityListBuilderInterface
      * {@inheritDoc}
      * @see \Module7\ComponentsBundle\EntityList\EntityListBuilderInterface::add()
      */
-    public function add($column, $columnClass = null, $options = array())
+    public function add($column, $columnClass = null, array $options = array())
     {
         if (!($column instanceof ColumnInterface)) {
             $column = $this->createColumn($column, $columnClass, $options);
