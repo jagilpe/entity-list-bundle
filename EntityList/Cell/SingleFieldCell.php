@@ -32,7 +32,7 @@ class SingleFieldCell extends AbstractCell
     protected function getCellContent($entity)
     {
         $content = $this->getValue($entity);
-        if (isset($this->options['translate_content']) && $this->options['translate_content']) {
+        if ($content && isset($this->options['translate_content']) && $this->options['translate_content']) {
             $translator = isset($this->options['translator']) ? $this->options['translator'] : null;
             if ($translator) {
                 $content = isset($this->options['translation_content_prefix'])
