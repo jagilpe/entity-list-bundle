@@ -13,6 +13,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractColumnType implements ColumnTypeInterface
 {
+    private $optionsResolver;
+
     private $inheritableOptions = array(
         'translation_domain',
         'label',
@@ -20,7 +22,7 @@ abstract class AbstractColumnType implements ColumnTypeInterface
 
     /**
      *
-     * @param EntityListBuilderInterface $builder
+     * @param ColumnBuilderInterface $builder
      * @param array $options
      */
     public function build(ColumnBuilderInterface $builder, array $options = array())

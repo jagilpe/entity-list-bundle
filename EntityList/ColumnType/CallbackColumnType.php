@@ -19,8 +19,10 @@ class CallbackColumnType extends AbstractColumnType
 {
     /**
      *
-     * @param EntityListBuilderInterface $builder
+     * @param ColumnBuilderInterface $builder
      * @param array $options
+     *
+     * @throws EntityListException
      */
     public function build(ColumnBuilderInterface $builder, array $options = array())
     {
