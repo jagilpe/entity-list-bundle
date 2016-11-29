@@ -31,6 +31,7 @@ abstract class AbstractListType implements ListTypeInterface
             'label' => null,
             'label_callback' => null,
             'list' => null,
+            'filter' => true,
             'translation_domain' => 'messages',
             'block_name' => null,
             'entity_class' => null,

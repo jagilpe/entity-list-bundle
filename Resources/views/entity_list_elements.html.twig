@@ -1,12 +1,14 @@
 
 {% block m7_entity_list %}
 <div{{ m7_attributes(element.attributes)}}>
-	<div class="pc-top-content-block-wrapper">
-		<div class="pc-input-wrapper">
-			<input class="pc-search search"
-				placeholder="{{ 'share.search'|trans({}, element.options.translation_domain) }}" />
-			<i class="glyphicon glyphicon-search"></i>
-		</div>
+	<div class="pc-top-content-block-wrapper{% if element.options.filter %} filter{% else %} no-filter{% endif %}">
+		{% if element.options.filter %}
+			<div class="pc-input-wrapper">
+				<input class="pc-search search"
+					placeholder="{{ 'share.search'|trans({}, element.options.translation_domain) }}" />
+				<i class="glyphicon glyphicon-search"></i>
+			</div>
+		{% endif %}
 		<div class="pc-table-title">{{ element.label|trans({}, element.options.translation_domain) }}</div>
 	</div>
 	<table class="table table-case" id="houses-list">
