@@ -65,6 +65,7 @@ abstract class AbstractCell implements CellInterface
         $content = array(
             'fieldName' => $this->fieldName,
             'value' => $this->getCellContent($entity),
+            'rawValue' => $this->getFieldValue($entity),
         );
         return new SimpleRenderableElement($content, $this->options);
     }
@@ -100,4 +101,12 @@ abstract class AbstractCell implements CellInterface
      * @return string
      */
     abstract protected function getCellContent($entity);
+
+    /**
+     * Returns the value from the entity
+     *
+     * @param $entity
+     * @return mixed
+     */
+    abstract protected function getFieldValue($entity);
 }

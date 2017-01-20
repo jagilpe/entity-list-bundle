@@ -61,3 +61,10 @@
 	<div class="pc-entity-field" data-field="{{ element.fieldName }}">{{ element.value }}</div>
 </td>
 {% endblock m7_simple_cell %}
+
+{% block m7_datetime_cell %}
+	<td{{ m7_attributes(element.attributes)}}>
+		<span data-field="{{ element.fieldName }}" style="display: none;">{{ element.rawValue|date('Ymdhis') }}</span>
+		<div class="pc-entity-field">{{ element.value }}</div>
+	</td>
+{% endblock m7_datetime_cell %}

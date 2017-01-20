@@ -36,7 +36,7 @@ class SingleFieldColumnType extends AbstractColumnType
     public function build(ColumnBuilderInterface $builder, array $options = array())
     {
         $fieldName = $options['field_name'] ? $options['field_name'] : $builder->getColumnName();
-        $cellClass = $options['multiple'] ? ArrayFieldCell::class : SingleFieldCell::class;
+        $cellClass = $this->getCellClass($options);
         $builder
             ->setCell(new $cellClass($fieldName, $this->getCellOptions($options)))
             ->setHeader(new SimpleHeaderElement($fieldName, $this->getHeaderOptions($options)));
@@ -54,5 +54,16 @@ class SingleFieldColumnType extends AbstractColumnType
             'field_name' => null,
             'multiple' => false,
         ));
+    }
+
+    /**
+     * Returns the name class for the cell
+     *
+     * @param array $options
+     * @return string
+     */
+    protected function getCellClass(array $options)
+    {
+        return $options['multiple'] ? ArrayFieldCell::class : SingleFieldCell::class;
     }
 }

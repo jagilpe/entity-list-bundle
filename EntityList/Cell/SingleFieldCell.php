@@ -87,7 +87,7 @@ class SingleFieldCell extends AbstractCell
 
     /**
      *
-     * @param unknown $entity
+     * @param mixed $entity
      */
     protected function getFieldValue($entity)
     {

@@ -1,7 +1,7 @@
 services:
     m7_components.list_factory:
         class: Module7\ComponentsBundle\EntityList\EntityListFactory
-        
+
     # Twig Extension
     m7_components.twig_extension:
         class: Module7\ComponentsBundle\Twig\Module7ComponentsExtension
@@ -11,10 +11,19 @@ services:
         public: false
         tags:
             - { name: twig.extension }
-            
-    
+
+
     m7_components.single_field.column_type:
         class: Module7\ComponentsBundle\EntityList\ColumnType\SingleFieldColumnType
+        arguments:
+            - "@translator"
+        public:     false
+        tags:
+            - { name: 'm7_components.column_type' }
+
+
+    m7_components.datetime.column_type:
+        class: Module7\ComponentsBundle\EntityList\ColumnType\DateTimeColumnType
         arguments:
             - "@translator"
         public:     false

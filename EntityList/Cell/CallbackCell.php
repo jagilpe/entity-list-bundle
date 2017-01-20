@@ -49,7 +49,7 @@ class CallbackCell extends AbstractCell
      */
     public function getCellContent($entity)
     {
-        return call_user_func($this->contentCallback, $entity);
+        return $this->getFieldValue($entity);
     }
 
     /**
@@ -59,5 +59,13 @@ class CallbackCell extends AbstractCell
     protected function getDefaultBlockName()
     {
         return 'm7_simple_cell';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getFieldValue($entity)
+    {
+        return call_user_func($this->contentCallback, $entity);
     }
 }
