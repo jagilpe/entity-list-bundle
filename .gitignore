@@ -3,3 +3,5 @@
 .settings/
 .phpunit.xml
 vendor/
+.idea/
+composer.lock
