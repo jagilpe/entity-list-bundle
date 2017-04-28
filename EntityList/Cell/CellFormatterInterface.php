@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
 
 /**
  * Defines a formatter to format the contents of a cell

@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
 
 /**
  * Parser for the entity lists

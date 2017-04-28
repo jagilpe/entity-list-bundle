@@ -1,9 +1,9 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\ColumnType;
+namespace Jagilpe\EntityListBundle\EntityList\ColumnType;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Module7\ComponentsBundle\EntityList\ColumnBuilderInterface;
+use Jagilpe\EntityListBundle\EntityList\ColumnBuilderInterface;
 
 /**
  * Interface for the creation of entity list columns through type classes

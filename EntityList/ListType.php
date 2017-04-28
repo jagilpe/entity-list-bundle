@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\EntityList\AbstractListType;
+use Jagilpe\EntityListBundle\EntityList\AbstractListType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -19,7 +19,7 @@ class ListType extends AbstractListType
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ListTypeInterface::configureOptions()
+     * @see \Jagilpe\EntityListBundle\EntityList\ListTypeInterface::configureOptions()
      */
     public function configureOptions(OptionsResolver $resolver)
     {

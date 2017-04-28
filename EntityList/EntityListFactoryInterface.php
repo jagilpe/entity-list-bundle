@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
+use Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface;
 
 /**
  *
@@ -23,7 +23,7 @@ interface EntityListFactoryInterface
      * @param array $options
      *   The options for the entity list
      *
-     * @return Module7\ComponentsBundle\EntityList\EntityListBuilderInterface
+     * @return Jagilpe\EntityListBundle\EntityList\EntityListBuilderInterface
      */
     public function createListBuilder(array $entities, $listTypeClass = null, array $options = array());
 
@@ -34,7 +34,7 @@ interface EntityListFactoryInterface
      * @param string $listTypeClass
      * @param array $options
      *
-     * @return \Module7\ComponentsBundle\EntityList\EntityList
+     * @return \Jagilpe\EntityListBundle\EntityList\EntityList
      */
     public function createList(array $entities, $listTypeClass = ListType::class, array $options = array());
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\DependencyInjection;
+namespace Jagilpe\EntityListBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  */
-class Module7ComponentsExtension extends Extension
+class JagilpeEntityListExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -27,6 +27,6 @@ class Module7ComponentsExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $container->setParameter('module7_components.lists_theme', $config['lists_theme']);
+        $container->setParameter('jagilpe_components.lists_theme', $config['lists_theme']);
     }
 }

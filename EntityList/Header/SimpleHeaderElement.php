@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Header;
+namespace Jagilpe\EntityListBundle\EntityList\Header;
 
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
+use Jagilpe\EntityListBundle\Render\RenderableBaseTrait;
 
 /**
  * Simple implementation of the Header Element
@@ -23,17 +23,17 @@ class SimpleHeaderElement implements HeaderElementInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getWidget()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getWidget()
      */
     public function getBlockName()
     {
-        return 'm7_simple_header_element';
+        return 'jgp_simple_header_element';
     }
 
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getLabel()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getLabel()
      */
     public function getLabel()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\ColumnType;
+namespace Jagilpe\EntityListBundle\EntityList\ColumnType;
 
-use Module7\ComponentsBundle\EntityList\ColumnType\AbstractColumnType;
+use Jagilpe\EntityListBundle\EntityList\ColumnType\AbstractColumnType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -19,7 +19,7 @@ class ColumnType extends AbstractColumnType
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ListTypeInterface::configureOptions()
+     * @see \Jagilpe\EntityListBundle\EntityList\ListTypeInterface::configureOptions()
      */
     public function configureOptions(OptionsResolver $resolver)
     {

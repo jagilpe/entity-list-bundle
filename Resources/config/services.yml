@@ -1,31 +1,31 @@
 services:
-    m7_components.list_factory:
-        class: Module7\ComponentsBundle\EntityList\EntityListFactory
+    jgp_entity_list.list_factory:
+        class: Jagilpe\EntityListBundle\EntityList\EntityListFactory
 
     # Twig Extension
-    m7_components.twig_extension:
-        class: Module7\ComponentsBundle\Twig\Module7ComponentsExtension
+    jgp_entity_list.twig_extension:
+        class: Jagilpe\EntityListBundle\Twig\JagilpeEntityListExtension
         arguments:
             - "@twig"
-            - "%module7_components.lists_theme%"
+            - "%jagilpe_components.lists_theme%"
         public: false
         tags:
             - { name: twig.extension }
 
 
-    m7_components.single_field.column_type:
-        class: Module7\ComponentsBundle\EntityList\ColumnType\SingleFieldColumnType
+    jgp_entity_list.single_field.column_type:
+        class: Jagilpe\EntityListBundle\EntityList\ColumnType\SingleFieldColumnType
         arguments:
             - "@translator"
         public:     false
         tags:
-            - { name: 'm7_components.column_type' }
+            - { name: 'jgp_entity_list.column_type' }
 
 
-    m7_components.datetime.column_type:
-        class: Module7\ComponentsBundle\EntityList\ColumnType\DateTimeColumnType
+    jgp_entity_list.datetime.column_type:
+        class: Jagilpe\EntityListBundle\EntityList\ColumnType\DateTimeColumnType
         arguments:
             - "@translator"
         public:     false
         tags:
-            - { name: 'm7_components.column_type' }
+            - { name: 'jgp_entity_list.column_type' }

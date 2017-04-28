@@ -1,10 +1,10 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
-use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
-use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
+use Jagilpe\EntityListBundle\EntityList\Header\HeaderInterface;
+use Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface;
+use Jagilpe\EntityListBundle\EntityList\Cell\CellInterface;
 
 /**
  * Defines an interface for the column builder
@@ -17,7 +17,7 @@ interface ColumnBuilderInterface
     /**
      * Adds header definition to the column
      *
-     * @param \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface $column
+     * @param \Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface $column
      *
      * @return ColumnBuilderInterface
      */
@@ -26,7 +26,7 @@ interface ColumnBuilderInterface
     /**
      * Adds cell definition to the column
      *
-     * @param \Module7\ComponentsBundle\EntityList\Cell\CellInterface $column
+     * @param \Jagilpe\EntityListBundle\EntityList\Cell\CellInterface $column
      *
      * @return ColumnBuilderInterface
      */
@@ -35,7 +35,7 @@ interface ColumnBuilderInterface
     /**
      * Returns the built entity list column
      *
-     * @return \Module7\ComponentsBundle\EntityList\Column\ColumnInterface
+     * @return \Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface
      */
     public function getListColumn();
 

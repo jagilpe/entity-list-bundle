@@ -1,11 +1,11 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
-use Module7\ComponentsBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Module7\ComponentsBundle\EntityList\ColumnType\ColumnTypeInterface;
+use Jagilpe\EntityListBundle\EntityList\ColumnType\ColumnTypeInterface;
 
 /**
  * Builder class to generate different Entity Lists
@@ -15,7 +15,7 @@ use Module7\ComponentsBundle\EntityList\ColumnType\ColumnTypeInterface;
 class EntityListBuilder implements EntityListBuilderInterface
 {
     /**
-     * @var \Module7\ComponentsBundle\EntityList\EntityList
+     * @var \Jagilpe\EntityListBundle\EntityList\EntityList
      */
     private $entityList;
 
@@ -41,7 +41,7 @@ class EntityListBuilder implements EntityListBuilderInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListBuilderInterface::add()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListBuilderInterface::add()
      */
     public function add($column, $columnClass = null, array $options = array())
     {
@@ -57,7 +57,7 @@ class EntityListBuilder implements EntityListBuilderInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListBuilderInterface::getEntityList()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListBuilderInterface::getEntityList()
      */
     public function getEntityList()
     {

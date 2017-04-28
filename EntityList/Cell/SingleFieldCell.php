@@ -1,11 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
-
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use AppBundle\Service\SettingsService;
-use Module7\ComponentsBundle\Render\RenderableInterface;
-use Doctrine\Common\Util\ClassUtils;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
+use ReflectionMethod;
 
 /**
  * Simple implementation of the CellInterface that simply returns the content of the field
@@ -18,7 +15,7 @@ class SingleFieldCell extends AbstractCell
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\CellInterface::getFields()
      */
     public function getFields()
     {
@@ -27,7 +24,7 @@ class SingleFieldCell extends AbstractCell
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\AbstractCell::getCellContent()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\AbstractCell::getCellContent()
      */
     protected function getCellContent($entity)
     {
@@ -82,12 +79,12 @@ class SingleFieldCell extends AbstractCell
     {
         return isset($this->options['datetime_format'])
             ? $this->options['datetime_format']
-            : SettingsService::DEFAULT_DATE_FORMAT;
+            : 'd.m.Y H:i';
     }
 
     /**
-     *
      * @param mixed $entity
+     * @return mixed|NULL
      */
     protected function getFieldValue($entity)
     {
@@ -156,8 +153,6 @@ class SingleFieldCell extends AbstractCell
      */
     protected function getFieldGetter(\ReflectionClass $reflectionClass, $fieldName)
     {
-        $getterFound = false;
-
         foreach (array('get', 'is', 'has') as $prefix) {
             $getter = $prefix.ucfirst($fieldName);
             $reflectionMethod = $reflectionClass->getMethod($getter);
@@ -173,10 +168,10 @@ class SingleFieldCell extends AbstractCell
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\AbstractCell::getDefaultBlockName()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\AbstractCell::getDefaultBlockName()
      */
     protected function getDefaultBlockName()
     {
-        return 'm7_simple_cell';
+        return 'jgp_simple_cell';
     }
 }

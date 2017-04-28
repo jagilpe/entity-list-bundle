@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\ColumnType;
+namespace Jagilpe\EntityListBundle\EntityList\ColumnType;
 
-use Module7\ComponentsBundle\EntityList\ColumnBuilderInterface;
+use Jagilpe\EntityListBundle\EntityList\ColumnBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -21,7 +21,6 @@ abstract class AbstractColumnType implements ColumnTypeInterface
     );
 
     /**
-     *
      * @param ColumnBuilderInterface $builder
      * @param array $options
      */
@@ -32,7 +31,7 @@ abstract class AbstractColumnType implements ColumnTypeInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ListTypeInterface::configureOptions()
+     * @see \Jagilpe\EntityListBundle\EntityList\ListTypeInterface::configureOptions()
      */
     public function configureOptions(OptionsResolver $resolver)
     {

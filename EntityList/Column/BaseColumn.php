@@ -1,9 +1,9 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Column;
+namespace Jagilpe\EntityListBundle\EntityList\Column;
 
-use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
-use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
+use Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface;
+use Jagilpe\EntityListBundle\EntityList\Cell\CellInterface;
 
 /**
  * Base column for the use with the List Column Builder
@@ -36,7 +36,7 @@ class BaseColumn implements ColumnInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getHeader()
+     * @see \Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface::getHeader()
      */
     public function getHeader()
     {
@@ -45,7 +45,7 @@ class BaseColumn implements ColumnInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::setHeader()
+     * @see \Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface::setHeader()
      */
     public function setHeader(HeaderElementInterface $header)
     {
@@ -55,7 +55,7 @@ class BaseColumn implements ColumnInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getCellContent()
+     * @see \Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface::getCellContent()
      */
     public function getCellElement($entity)
     {
@@ -75,7 +75,7 @@ class BaseColumn implements ColumnInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Column\ColumnInterface::getFields()
+     * @see \Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface::getFields()
      */
     public function getFields()
     {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\Render\RenderableInterface;
-use Module7\ComponentsBundle\Exception\EntityListException;
-use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use Module7\ComponentsBundle\EntityList\Header\SimpleHeader;
-use Module7\ComponentsBundle\EntityList\Body\SimpleBody;
-use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
-use Module7\ComponentsBundle\EntityList\Body\BodyInterface;
+use Jagilpe\EntityListBundle\Render\RenderableInterface;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface;
+use Jagilpe\EntityListBundle\Render\RenderableBaseTrait;
+use Jagilpe\EntityListBundle\EntityList\Header\SimpleHeader;
+use Jagilpe\EntityListBundle\EntityList\Body\SimpleBody;
+use Jagilpe\EntityListBundle\EntityList\Header\HeaderInterface;
+use Jagilpe\EntityListBundle\EntityList\Body\BodyInterface;
 
 /**
  *
@@ -46,16 +46,16 @@ class EntityList implements RenderableInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getWidget()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getWidget()
      */
     public function getBlockName()
     {
-        return 'm7_entity_list';
+        return 'jgp_entity_list';
     }
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getChildren()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getChildren()
      */
     public function getChildren()
     {
@@ -104,7 +104,7 @@ class EntityList implements RenderableInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getAttributes()
      */
     public function getAttributes()
     {

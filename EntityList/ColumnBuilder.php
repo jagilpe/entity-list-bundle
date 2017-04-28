@@ -1,12 +1,12 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Module7\ComponentsBundle\EntityList\Column\BaseColumn;
-use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
-use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
+use Jagilpe\EntityListBundle\EntityList\Column\BaseColumn;
+use Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface;
+use Jagilpe\EntityListBundle\EntityList\Cell\CellInterface;
 
 /**
  * Builder class to generate different Entity List Columns
@@ -16,7 +16,7 @@ use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
 class ColumnBuilder implements ColumnBuilderInterface
 {
     /**
-     * @var \Module7\ComponentsBundle\EntityList\Column\ColumnInterface
+     * @var \Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface
      */
     private $listColumn;
 
@@ -39,7 +39,7 @@ class ColumnBuilder implements ColumnBuilderInterface
     /**
      * Adds header definition to the column
      *
-     * @param \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface $column
+     * @param \Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface $column
      *
      * @return ColumnBuilderInterface
      */
@@ -52,7 +52,7 @@ class ColumnBuilder implements ColumnBuilderInterface
     /**
      * Adds cell definition to the column
      *
-     * @param \Module7\ComponentsBundle\EntityList\Cell\CellInterface $column
+     * @param \Jagilpe\EntityListBundle\EntityList\Cell\CellInterface $column
      *
      * @return ColumnBuilderInterface
      */
@@ -74,7 +74,7 @@ class ColumnBuilder implements ColumnBuilderInterface
      *
      * {@inheritdoc}
      *
-     * @see \Module7\ComponentsBundle\EntityList\ColumnBuilderInterface::getColumnName()
+     * @see \Jagilpe\EntityListBundle\EntityList\ColumnBuilderInterface::getColumnName()
      */
     public function getColumnName()
     {

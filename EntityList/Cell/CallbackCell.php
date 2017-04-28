@@ -1,11 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
 
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use AppBundle\Service\SettingsService;
-use Module7\ComponentsBundle\Render\RenderableInterface;
-use Module7\ComponentsBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
 
 /**
  * Simple implementation of the CellInterface that uses a callback to return the content of the cell
@@ -36,7 +33,7 @@ class CallbackCell extends AbstractCell
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getFields()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\CellInterface::getFields()
      */
     public function getFields()
     {
@@ -45,7 +42,7 @@ class CallbackCell extends AbstractCell
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\CellInterface::getCellElement()
      */
     public function getCellContent($entity)
     {
@@ -54,11 +51,11 @@ class CallbackCell extends AbstractCell
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\AbstractCell::getDefaultBlockName()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\AbstractCell::getDefaultBlockName()
      */
     protected function getDefaultBlockName()
     {
-        return 'm7_simple_cell';
+        return 'jgp_simple_cell';
     }
 
     /**

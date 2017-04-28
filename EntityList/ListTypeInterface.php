@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

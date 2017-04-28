@@ -1,14 +1,14 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\ColumnType;
+namespace Jagilpe\EntityListBundle\EntityList\ColumnType;
 
-use Module7\ComponentsBundle\EntityList\ColumnBuilderInterface;
+use Jagilpe\EntityListBundle\EntityList\ColumnBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Module7\ComponentsBundle\EntityList\Header\SimpleHeaderElement;
-use Module7\ComponentsBundle\EntityList\Cell\SingleFieldCell;
-use Module7\ComponentsBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\EntityList\Header\SimpleHeaderElement;
+use Jagilpe\EntityListBundle\EntityList\Cell\SingleFieldCell;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
 use function WebDriver\parentt;
-use Module7\ComponentsBundle\EntityList\Cell\CallbackCell;
+use Jagilpe\EntityListBundle\EntityList\Cell\CallbackCell;
 
 /**
  * Defines a column with cells filled with a callback
@@ -39,7 +39,7 @@ class CallbackColumnType extends AbstractColumnType
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ListTypeInterface::configureOptions()
+     * @see \Jagilpe\EntityListBundle\EntityList\ListTypeInterface::configureOptions()
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -54,7 +54,7 @@ class CallbackColumnType extends AbstractColumnType
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ColumnType\AbstractColumnType::getCellOptions()
+     * @see \Jagilpe\EntityListBundle\EntityList\ColumnType\AbstractColumnType::getCellOptions()
      */
     protected function getCellOptions($options)
     {

@@ -1,11 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
 
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use AppBundle\Service\SettingsService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Module7\ComponentsBundle\Render\SimpleRenderableElement;
+use Jagilpe\EntityListBundle\Render\SimpleRenderableElement;
 
 /**
  * Abstract class to be used as base to implement the CellInterface
@@ -58,7 +55,7 @@ abstract class AbstractCell implements CellInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellInterface::getCellElement()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\CellInterface::getCellElement()
      */
     public function getCellElement($entity)
     {
@@ -78,13 +75,6 @@ abstract class AbstractCell implements CellInterface
     public function getFieldName()
     {
         return $this->fieldName;
-    }
-
-    private function getDateTimeFormat()
-    {
-        return isset($this->options['datetime_format'])
-            ? $this->options['datetime_format']
-            : SettingsService::DEFAULT_DATE_FORMAT;
     }
 
     /**

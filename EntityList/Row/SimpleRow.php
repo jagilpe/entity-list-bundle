@@ -1,9 +1,9 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Row;
+namespace Jagilpe\EntityListBundle\EntityList\Row;
 
-use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
+use Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface;
+use Jagilpe\EntityListBundle\Render\RenderableBaseTrait;
 
 /**
  *
@@ -33,7 +33,7 @@ class SimpleRow implements RowInterface
     /**
      * {@inheritdoc}
      *
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getChildren()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getChildren()
      */
     public function getChildren()
     {
@@ -50,11 +50,11 @@ class SimpleRow implements RowInterface
      *
      * {@inheritdoc}
      *
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getBlockName()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getBlockName()
      */
     public function getBlockName()
     {
-        return 'm7_simple_row';
+        return 'jgp_simple_row';
     }
 
 }

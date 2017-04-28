@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
 
-use Module7\ComponentsBundle\Exception\EntityListException;
+use Jagilpe\EntityListBundle\Exception\EntityListException;
 
 /**
  * A Cell formatter for datetimes
@@ -30,7 +30,7 @@ class DateTimeCellFormatter implements CellFormatterInterface
      *
      * {@inheritdoc}
      *
-     * @see \Module7\ComponentsBundle\EntityList\Cell\CellFormatterInterface::formatValue()
+     * @see \Jagilpe\EntityListBundle\EntityList\Cell\CellFormatterInterface::formatValue()
      */
     public function formatValue($value)
     {

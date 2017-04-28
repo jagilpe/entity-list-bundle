@@ -1,11 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
-
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use AppBundle\Service\SettingsService;
-use Module7\ComponentsBundle\Render\RenderableInterface;
-use Module7\ComponentsBundle\Render\SimpleRenderableElement;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
 
 /**
  * Simple implementation of the CellInterface that simply returns the content of the field

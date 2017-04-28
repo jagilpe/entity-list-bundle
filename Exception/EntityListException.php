@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\Exception;
+namespace Jagilpe\EntityListBundle\Exception;
 
 /**
  * EntityLists base Exception

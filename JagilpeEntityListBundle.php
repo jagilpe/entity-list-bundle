@@ -1,17 +1,17 @@
 <?php
 
-namespace Module7\ComponentsBundle;
+namespace Jagilpe\EntityListBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Module7\ComponentsBundle\DependencyInjection\Compiler\EntityListTypePass;
+use Jagilpe\EntityListBundle\DependencyInjection\Compiler\EntityListTypePass;
 
 /**
  * This Bundle builds a reusable components
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  */
-class Module7ComponentsBundle extends Bundle
+class JagilpeEntityListBundle extends Bundle
 {
     /**
      *

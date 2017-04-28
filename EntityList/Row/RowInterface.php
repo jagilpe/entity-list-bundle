@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Row;
+namespace Jagilpe\EntityListBundle\EntityList\Row;
 
-use Module7\ComponentsBundle\Render\RenderableInterface;
+use Jagilpe\EntityListBundle\Render\RenderableInterface;
 
 /**
  *

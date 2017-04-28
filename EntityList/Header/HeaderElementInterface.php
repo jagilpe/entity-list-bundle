@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Header;
+namespace Jagilpe\EntityListBundle\EntityList\Header;
 
-use Module7\ComponentsBundle\Render\RenderableInterface;
+use Jagilpe\EntityListBundle\Render\RenderableInterface;
 
 /**
  * Defines the interface of the Entity List header elements

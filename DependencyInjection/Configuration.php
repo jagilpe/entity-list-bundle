@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\DependencyInjection;
+namespace Jagilpe\EntityListBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -20,12 +20,12 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('module7_components');
+        $rootNode = $treeBuilder->root('jagilpe_components');
 
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('lists_theme')->defaultValue('Module7ComponentsBundle::entity_list_elements.html.twig')->end()
+                ->scalarNode('lists_theme')->defaultValue('JagilpeEntityListBundle::entity_list_elements.html.twig')->end()
             ->end()
         ;
 

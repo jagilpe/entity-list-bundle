@@ -1,14 +1,14 @@
 <?php
 
-namespace Module7\ComponentsBundle\Twig;
+namespace Jagilpe\EntityListBundle\Twig;
 
-use Module7\ComponentsBundle\Twig\Functions\EntityElementRenderer;
+use Jagilpe\EntityListBundle\Twig\Functions\EntityElementRenderer;
 
 /**
  *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
  */
-class Module7ComponentsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class JagilpeEntityListExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      *
@@ -30,7 +30,7 @@ class Module7ComponentsExtension extends \Twig_Extension implements \Twig_Extens
      */
     public function getName()
     {
-        return 'module7_components_bundle_extension';
+        return 'jagilpe_components_bundle_extension';
     }
 
     /**
@@ -44,10 +44,10 @@ class Module7ComponentsExtension extends \Twig_Extension implements \Twig_Extens
         );
 
         $functions = array();
-        $functions[] = new EntityElementRenderer($this->twig, 'm7_list_render', $options);
-        $functions[] = new EntityElementRenderer($this->twig, 'm7_element_render', $options);
+        $functions[] = new EntityElementRenderer($this->twig, 'jgp_list_render', $options);
+        $functions[] = new EntityElementRenderer($this->twig, 'jgp_element_render', $options);
         $functions[] = new \Twig_SimpleFunction(
-            'm7_attributes',
+            'jgp_attributes',
             array($this, 'getAttributesString'),
             array(
                 'is_safe' => array('html'),

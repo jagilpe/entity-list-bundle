@@ -1,9 +1,9 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Body;
+namespace Jagilpe\EntityListBundle\EntityList\Body;
 
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use Module7\ComponentsBundle\EntityList\Row\SimpleRow;
+use Jagilpe\EntityListBundle\Render\RenderableBaseTrait;
+use Jagilpe\EntityListBundle\EntityList\Row\SimpleRow;
 
 /**
  *
@@ -37,16 +37,16 @@ class SimpleBody implements BodyInterface
      *
      * {@inheritdoc}
      *
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getBlockName()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getBlockName()
      */
     public function getBlockName()
     {
-        return 'm7_simple_body';
+        return 'jgp_simple_body';
     }
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getChildren()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getChildren()
      */
     public function getChildren()
     {

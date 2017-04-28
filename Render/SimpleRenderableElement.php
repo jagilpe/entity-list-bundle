@@ -1,8 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\Render;
-
-use Prophecy\Exception\Doubler\MethodNotFoundException;
+namespace Jagilpe\EntityListBundle\Render;
 
 /**
  *
@@ -35,7 +33,7 @@ class SimpleRenderableElement extends AbstractRenderableElement
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getLabel()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getLabel()
      */
     public function getLabel()
     {
@@ -44,11 +42,11 @@ class SimpleRenderableElement extends AbstractRenderableElement
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getBlockName()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getBlockName()
      */
     public function getBlockName()
     {
-        $blockName = isset($this->options['block_name']) ? $this->options['block_name'] : 'm7_simple_element';
+        $blockName = isset($this->options['block_name']) ? $this->options['block_name'] : 'jgp_simple_element';
         return $blockName;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Cell;
+namespace Jagilpe\EntityListBundle\EntityList\Cell;
 
-use Module7\ComponentsBundle\Render\RenderableInterface;
+use Jagilpe\EntityListBundle\Render\RenderableInterface;
 
 /**
  * Defines an interface to work with a cell in an Entity List

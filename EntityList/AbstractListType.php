@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +13,7 @@ abstract class AbstractListType implements ListTypeInterface
 {
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ListTypeInterface::buildList()
+     * @see \Jagilpe\EntityListBundle\EntityList\ListTypeInterface::buildList()
      */
     public function buildList(EntityListBuilderInterface $builder, array $options = array())
     {
@@ -22,7 +22,7 @@ abstract class AbstractListType implements ListTypeInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\ListTypeInterface::configureOptions()
+     * @see \Jagilpe\EntityListBundle\EntityList\ListTypeInterface::configureOptions()
      */
     public function configureOptions(OptionsResolver $resolver)
     {

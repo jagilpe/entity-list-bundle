@@ -1,10 +1,10 @@
 <?php
 
-namespace Module7\ComponentsBundle\Twig\Functions;
+namespace Jagilpe\EntityListBundle\Twig\Functions;
 
-use Module7\ComponentsBundle\Render\RendererInterface;
-use Module7\ComponentsBundle\Render\RenderableInterface;
-use Module7\ComponentsBundle\EntityList\EntityList;
+use Jagilpe\EntityListBundle\Render\RendererInterface;
+use Jagilpe\EntityListBundle\Render\RenderableInterface;
+use Jagilpe\EntityListBundle\EntityList\EntityList;
 
 /**
  * Implementation of the EntityList Renderer Interface for Twig
@@ -20,7 +20,7 @@ class EntityElementRenderer extends \Twig_SimpleFunction implements RendererInte
      */
     private $twig;
 
-    public function __construct(\Twig_Environment $twig, $name = 'm7_list_render', $options = array())
+    public function __construct(\Twig_Environment $twig, $name = 'jgp_list_render', $options = array())
     {
         $this->twig = $twig;
 
@@ -32,7 +32,7 @@ class EntityElementRenderer extends \Twig_SimpleFunction implements RendererInte
 
      /**
       * {@inheritDoc}
-      * @see \Module7\ComponentsBundle\EntityList\Renderer\RendererInterface::render()
+      * @see \Jagilpe\EntityListBundle\EntityList\Renderer\RendererInterface::render()
       */
     public function render(RenderableInterface $renderableElement)
     {

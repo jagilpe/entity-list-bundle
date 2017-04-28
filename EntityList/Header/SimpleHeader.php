@@ -1,9 +1,9 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Header;
+namespace Jagilpe\EntityListBundle\EntityList\Header;
 
-use Module7\ComponentsBundle\Render\RenderableBaseTrait;
-use Module7\ComponentsBundle\EntityList\Column\ColumnInterface;
+use Jagilpe\EntityListBundle\Render\RenderableBaseTrait;
+use Jagilpe\EntityListBundle\EntityList\Column\ColumnInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -28,16 +28,16 @@ class SimpleHeader implements HeaderInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getWidget()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getWidget()
      */
     public function getBlockName()
     {
-        return 'm7_simple_header';
+        return 'jgp_simple_header';
     }
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getChildren()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getChildren()
      */
     public function getChildren()
     {

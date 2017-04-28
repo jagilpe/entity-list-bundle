@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\Render;
+namespace Jagilpe\EntityListBundle\Render;
 
 /**
  * Defines the interface for the renderer

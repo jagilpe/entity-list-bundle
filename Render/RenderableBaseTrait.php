@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\Render;
+namespace Jagilpe\EntityListBundle\Render;
 
 /**
  * Defines a trait to reuse the most commons implementations of the RenderableInterface
@@ -17,7 +17,7 @@ trait RenderableBaseTrait
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getLabel()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getLabel()
      */
     public function getLabel()
     {
@@ -36,7 +36,7 @@ trait RenderableBaseTrait
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getOptions()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getOptions()
      */
     public function getOptions()
     {
@@ -45,7 +45,7 @@ trait RenderableBaseTrait
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getChildren()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getChildren()
      */
     public function getChildren()
     {
@@ -54,7 +54,7 @@ trait RenderableBaseTrait
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getAttributes()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getAttributes()
      */
     public function getAttributes()
     {
@@ -63,7 +63,7 @@ trait RenderableBaseTrait
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\Render\RenderableInterface::getVars()
+     * @see \Jagilpe\EntityListBundle\Render\RenderableInterface::getVars()
      */
     public function getVars()
     {

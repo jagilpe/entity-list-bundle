@@ -1,11 +1,10 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList\Column;
+namespace Jagilpe\EntityListBundle\EntityList\Column;
 
-use Module7\ComponentsBundle\EntityList\Header\HeaderInterface;
-use Module7\ComponentsBundle\EntityList\Cell\CellInterface;
-use Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface;
-use Module7\ComponentsBundle\Render\RenderableInterface;
+use Jagilpe\EntityListBundle\EntityList\Cell\CellInterface;
+use Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface;
+use Jagilpe\EntityListBundle\Render\RenderableInterface;
 
 /**
  * Defines an interface to work with the column of an entity list
@@ -17,7 +16,7 @@ interface ColumnInterface
     /**
      * Returns the Header for this column
      *
-     * @return \Module7\ComponentsBundle\EntityList\Header\HeaderElementInterface
+     * @return \Jagilpe\EntityListBundle\EntityList\Header\HeaderElementInterface
      */
     public function getHeader();
 

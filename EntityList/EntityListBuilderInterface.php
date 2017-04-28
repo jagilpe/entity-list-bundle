@@ -1,6 +1,6 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
 /**
  * Defines the interface for the EntityListBuilders
@@ -24,7 +24,7 @@ interface EntityListBuilderInterface
     /**
      * Returns the built entity list
      *
-     * @return \Module7\ComponentsBundle\EntityList\EntityList
+     * @return \Jagilpe\EntityListBundle\EntityList\EntityList
      */
     public function getEntityList();
 }

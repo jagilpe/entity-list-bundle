@@ -1,9 +1,9 @@
 <?php
 
-namespace Module7\ComponentsBundle\EntityList;
+namespace Jagilpe\EntityListBundle\EntityList;
 
-use Module7\ComponentsBundle\EntityList\ColumnType\ColumnType;
-use Module7\ComponentsBundle\EntityList\ColumnType\ColumnTypeInterface;
+use Jagilpe\EntityListBundle\EntityList\ColumnType\ColumnType;
+use Jagilpe\EntityListBundle\EntityList\ColumnType\ColumnTypeInterface;
 
 class EntityListFactory implements EntityListFactoryInterface
 {
@@ -24,7 +24,7 @@ class EntityListFactory implements EntityListFactoryInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::createListBuilder()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListFactoryInterface::createListBuilder()
      */
     public function createListBuilder(array $entities, $listTypeClass = null, array $options = array())
     {
@@ -37,7 +37,7 @@ class EntityListFactory implements EntityListFactoryInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::createList()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListFactoryInterface::createList()
      */
     public function createList(array $entities, $listTypeClass = ListType::class, array $options = array())
     {
@@ -48,7 +48,7 @@ class EntityListFactory implements EntityListFactoryInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::getEntityListType()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListFactoryInterface::getEntityListType()
      */
     public function getEntityListType($typeClass)
     {
@@ -63,7 +63,7 @@ class EntityListFactory implements EntityListFactoryInterface
     /**
      *
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::createListColumnBuilder()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListFactoryInterface::createListColumnBuilder()
      */
     public function createListColumnBuilder($columnName, $listColumnTypeClass = null, array $options = array())
     {
@@ -75,7 +75,7 @@ class EntityListFactory implements EntityListFactoryInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::createListColumn()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListFactoryInterface::createListColumn()
      */
     public function createListColumn($columnName, $listColumnTypeClass = ColumnType::class, array $options = array())
     {
@@ -85,7 +85,7 @@ class EntityListFactory implements EntityListFactoryInterface
 
     /**
      * {@inheritDoc}
-     * @see \Module7\ComponentsBundle\EntityList\EntityListFactoryInterface::getEntityListColumnType()
+     * @see \Jagilpe\EntityListBundle\EntityList\EntityListFactoryInterface::getEntityListColumnType()
      */
     public function getEntityListColumnType($columnTypeClass)
     {

@@ -1,6 +1,6 @@
 
-{% block m7_entity_list %}
-<div{{ m7_attributes(element.attributes)}}>
+{% block jgp_entity_list %}
+<div{{ jgp_attributes(element.attributes)}}>
 	<div class="pc-top-content-block-wrapper{% if element.options.filter %} filter{% else %} no-filter{% endif %}">
 		{% if element.options.filter %}
 			<div class="pc-input-wrapper">
@@ -13,58 +13,58 @@
 	</div>
 	<table class="table table-case" id="houses-list">
 		<thead>
-			{{ m7_element_render(element.header) }}
+			{{ jgp_element_render(element.header) }}
 		</thead>
 		<tbody class="list">
- 			{{ m7_element_render(element.body) }}
+ 			{{ jgp_element_render(element.body) }}
 		</tbody>
 	</table>
 	<ul class="pagination"></ul>
 </div>
-{% endblock m7_entity_list %}
+{% endblock jgp_entity_list %}
 
-{% block m7_simple_header %}
-<tr{{ m7_attributes(element.attributes)}}>
+{% block jgp_simple_header %}
+<tr{{ jgp_attributes(element.attributes)}}>
 	{% for child in element.children %}
-	{{ m7_element_render(child) }}
+	{{ jgp_element_render(child) }}
 	{% endfor %}
 </tr>
-{% endblock m7_simple_header %}
+{% endblock jgp_simple_header %}
 
-{% block m7_simple_header_element %}
-<th{{ m7_attributes(element.attributes)}}>
+{% block jgp_simple_header_element %}
+<th{{ jgp_attributes(element.attributes)}}>
 	<a class="sort" data-sort="{{ element.fieldName }}">
         {{ element.label|trans({}, element.options.translation_domain) }}
 	</a>
 </th>
-{% endblock m7_simple_header_element %}
+{% endblock jgp_simple_header_element %}
 
-{% block m7_simple_body %}
+{% block jgp_simple_body %}
     {% if element.children is not iterable or element.children is empty %}
         <tr><td class="text-center">{{ 'no_results_found'|trans({}, element.options.translation_domain) }}</td></tr>
     {% endif %}
     {% for child in element.children %}
-        {{ m7_element_render(child) }}
+        {{ jgp_element_render(child) }}
     {% endfor %}
-{% endblock m7_simple_body %}
+{% endblock jgp_simple_body %}
 
-{% block m7_simple_row %}
-<tr{{ m7_attributes(element.attributes)}}>
+{% block jgp_simple_row %}
+<tr{{ jgp_attributes(element.attributes)}}>
 	{% for child in element.children %}
-    {{ m7_element_render(child) }}
+    {{ jgp_element_render(child) }}
 	{% endfor %}
 </tr>
-{% endblock m7_simple_row %}
+{% endblock jgp_simple_row %}
 
-{% block m7_simple_cell %}
-<td{{ m7_attributes(element.attributes)}}>
+{% block jgp_simple_cell %}
+<td{{ jgp_attributes(element.attributes)}}>
 	<div class="pc-entity-field" data-field="{{ element.fieldName }}">{{ element.value }}</div>
 </td>
-{% endblock m7_simple_cell %}
+{% endblock jgp_simple_cell %}
 
-{% block m7_datetime_cell %}
-	<td{{ m7_attributes(element.attributes)}}>
+{% block jgp_datetime_cell %}
+	<td{{ jgp_attributes(element.attributes)}}>
 		<span data-field="{{ element.fieldName }}" style="display: none;">{{ element.rawValue|date('Ymdhis') }}</span>
 		<div class="pc-entity-field">{{ element.value }}</div>
 	</td>
-{% endblock m7_datetime_cell %}
+{% endblock jgp_datetime_cell %}
