@@ -4,4 +4,5 @@
 .phpunit.xml
 vendor/
 .idea/
+.DS_Store
 composer.lock
