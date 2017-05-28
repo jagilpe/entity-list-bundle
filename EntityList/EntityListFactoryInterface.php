@@ -14,8 +14,6 @@ interface EntityListFactoryInterface
     /**
      * Factory method to create a list builder
      *
-     * @param string $entityClass
-     *   The class of the entities
      * @param array $entities
      *   The entities to build the list WithComments
      * @param array $listTypeClass
@@ -23,7 +21,7 @@ interface EntityListFactoryInterface
      * @param array $options
      *   The options for the entity list
      *
-     * @return Jagilpe\EntityListBundle\EntityList\EntityListBuilderInterface
+     * @return \Jagilpe\EntityListBundle\EntityList\EntityListBuilderInterface
      */
     public function createListBuilder(array $entities, $listTypeClass = null, array $options = array());
 
@@ -53,7 +51,7 @@ interface EntityListFactoryInterface
      * Factory method to create a list column from an existent list type
      *
      * @param string $columnName
-     * @param string $listTypeClass
+     * @param string $listColumnTypeClass
      * @param array $options
      *
      * @return ColumnBuilderInterface
@@ -64,7 +62,7 @@ interface EntityListFactoryInterface
      * Factory method to create a list column from an existent list type
      *
      * @param string $columnName
-     * @param string $listTypeClass
+     * @param string $listColumnTypeClass
      * @param array $options
      *
      * @return ColumnInterface
