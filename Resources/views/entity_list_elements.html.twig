@@ -1,6 +1,6 @@
 
 {% block jgp_entity_list %}
-<div{{ jgp_attributes(element.attributes)}}>
+<div{{ jgp_attributes(element.attributes)}} data-target="jgp-searchable-table">
 	<div class="pc-top-content-block-wrapper{% if element.options.filter %} filter{% else %} no-filter{% endif %}">
 		{% if element.options.filter %}
 			<div class="pc-input-wrapper">
@@ -11,7 +11,7 @@
 		{% endif %}
 		<div class="pc-table-title">{{ element.label|trans({}, element.options.translation_domain) }}</div>
 	</div>
-	<table class="table table-case" id="houses-list">
+	<table class="table table-case" id="entity-list">
 		<thead>
 			{{ jgp_element_render(element.header) }}
 		</thead>

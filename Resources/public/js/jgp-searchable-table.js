@@ -1,12 +1,13 @@
 ;
 (function($, window, document, undefined) {
-    var pluginName = 'm7SearchableTable',
+    var pluginName = 'jgpSearchableTable',
         dataKey = 'plugin_' + pluginName;
 
     var Plugin = function(element, options) {
         this.element = element;
         this.options = {
-            pagination: true
+            pagination: true,
+            onUpdate: function(listElement) {}
         };
 
         this.init(options);
@@ -23,18 +24,18 @@
 
             var listOptions = {
                 valueNames: this.searchFields,
-                page: this.pagerItemsPerPage
+                page: this.pagerItemsPerPage,
+                pagination: this._loadPagination()
             };
 
-            if (this._loadPagination()) {
-                listOptions.plugins = [ListPagination({
-                    outerWindow: 1
-                })];
-            }
             this.list = new List(this.element, listOptions);
             this.list.on('updated', function() {
                 plugin.options.onUpdate(plugin.element);
             });
+        },
+
+        setOnUpdateCallback: function(callback) {
+            this.options.onUpdate = callback;
         },
 
         _loadPagination: function() {
@@ -63,7 +64,7 @@
             });
         } else if (typeof options === 'string' && options[0] !== '_' &&
             options !== 'init') {
-            // Call a public pluguin method (not starting with an
+            // Call a public plugin method (not starting with an
             // underscore) for each
             // selected element.
             if (Array.prototype.slice.call(args, 1).length == 0 &&
@@ -89,5 +90,10 @@
             }
         }
     };
+
+    // Load the plugin for the ajax blocks in the document
+    $(document).ready(function() {
+        $('[data-target="jgp-searchable-table"]').jgpSearchableTable();
+    });
 
 })(jQuery, window, document);

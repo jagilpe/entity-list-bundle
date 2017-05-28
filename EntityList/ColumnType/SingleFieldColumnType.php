@@ -6,14 +6,11 @@ use Jagilpe\EntityListBundle\EntityList\ColumnBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Jagilpe\EntityListBundle\EntityList\Header\SimpleHeaderElement;
 use Jagilpe\EntityListBundle\EntityList\Cell\SingleFieldCell;
-use Jagilpe\EntityListBundle\Exception\EntityListException;
 use Jagilpe\EntityListBundle\EntityList\Cell\ArrayFieldCell;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- *
  * @author Javier Gil Pereda <javier.gil@module-7.com>
- *
  */
 class SingleFieldColumnType extends AbstractColumnType
 {
@@ -29,8 +26,7 @@ class SingleFieldColumnType extends AbstractColumnType
     }
 
     /**
-     *
-     * @param EntityListBuilderInterface $builder
+     * @param ColumnBuilderInterface $builder
      * @param array $options
      */
     public function build(ColumnBuilderInterface $builder, array $options = array())

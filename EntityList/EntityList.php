@@ -110,14 +110,27 @@ class EntityList implements RenderableInterface
     {
         $attributes = isset($this->options['attrs']) ? $this->options['attrs'] : array();
 
+        $attributes['id'] = $this->getUniqueId();
+
         if (!isset($attributes['class'])) {
             $attributes['class'] = array();
         }
-        $classes = array('table-responsive', 'm7-searchable-table');
+        $classes = array('table-responsive');
         $attributes['class'] = array_merge($attributes['class'], $classes);
         $attributes['data-terms'] = implode(',', $this->getFields());
         $attributes['data-items-per-page'] = $this->options['pager-items-per-page'];
 
         return $attributes;
+    }
+
+    /**
+     * Returns a unique id for the list wrapper element. This id is required by the
+     * pagination plugin of the List.js library
+     *
+     * @return string
+     */
+    protected function getUniqueId()
+    {
+        return md5(uniqid(rand(), true));
     }
 }
