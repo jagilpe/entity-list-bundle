@@ -45,6 +45,9 @@ http://listjs.com/
 
 You can read the documentation of the usage of the bundle [here](Resources/doc/index.md)
 
+You can also see a demo of this bundle in https://demos.gilpereda.com/symfony-bundles/entity-list/ or directly download the
+demo from https://github.com/jagilpe/bundles-demo
+
 # API Reference
 
 https://api.gilpereda.com/entity-list-bundle/master/
